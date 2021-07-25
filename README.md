@@ -4,6 +4,7 @@
 
 ## Objetivo principal
 
+Buggr CRM will improve your development projects' life-cycle by enhancing productivity, processes, and pipeline visibility for your team.
 
 ## Características
 
@@ -15,6 +16,8 @@
 
 
 ## Modelos de Base de Datos
+
+
 
 
 
