@@ -8,6 +8,15 @@ Buggr CRM will improve your development projects' life-cycle by enhancing produc
 
 ## Características
 
+Buggr is a tool designed to increase visibility into the status of a development team's projects. Users are able to register and create their organizations. Each organization can then keep track of their different projects and at what stage they are at in order to avoid any of them falling through the cracks.
+
+Functionality:
+
+- See all projects side by side
+- Add projects for the entire team to see, keeping track of dollar value, finish dates, current stage, and more.
+- Add focuments to project to keep track of important materials like contracts and resources.
+- Move projects across different stages of development and easily flag stuck ones.
+
 # Desarrollo Backend
 
 ## Modelos de Base de Datos
@@ -73,17 +82,39 @@ Comment
 
 ## Ruteo
 
-### Métodos GET
+### GET Methods
 
-| Ruta           | Descripción                                                                |
-| -------------- | -------------------------------------------------------------------------- |
-| /              | Home. Landing del usuario donde ve la propuesta de valor de la aplicación. |
-| /registro      | Área de registro para el usuario.                                          |
-| /iniciarsesion |
-| /cerrarsesion  |
+| Ruta                          | Descripción                                                                                     |
+| ----------------------------- | ----------------------------------------------------------------------------------------------- |
+| /                             | Home. Website landing where the user and get information about Buggr's value and functionality. |
+| /aboutus                      | Information about the team behind Buggr                                                         |
+| /product                      | Information about Buggr, its capabilities and value                                             |
+| /contactus                    | Form to contact us for any information or request.                                              |
+| /register                     | Register as a user                                                                              |
+| /login                        | Login to your account                                                                           |
+| /app                          | Homepage for application                                                                        |
+| /app/myprofile                | User's profile                                                                                  |
+| /app/myprofile/edit           | Edit User's profile                                                                             |
+| /app/neworg                   | Create a new organization                                                                       |
+| /app/:orgId                   | Organization's page                                                                             |
+| /app/:orgId/edit              | Edit organization                                                                               |
+| /app/:orgId/delete            | Delete an organization                                                                          |
+| /app/:orgId/newproject        | Create a new project for the current organization                                               |
+| /app/:orgId/:projectId        | Project's page                                                                                  |
+| /app/:orgId/:projectId/edit   | Edit a project                                                                                  |
+| /app/:orgId/:projectId/delete | Delete a project                                                                                |
 
 ### Métodos POST
 
-| Ruta    | Descripción                           |
-| ------- | ------------------------------------- |
-| /buscar | Petición para búsqueda de un producto |
+| Ruta                          | Descripción                                                  |
+| ----------------------------- | ------------------------------------------------------------ |
+| /register                     | Request to register as a user                                |
+| /login                        | Request to login to your account                             |
+| /contactus                    | Submit form to contact us for any information or request.    |
+| /app/neworg                   | Request to create a new organization                         |
+| /app/myprofile/edit           | Request to edit User's profile                               |
+| /app/:orgId/edit              | Request to edit organization                                 |
+| /app/:orgId/delete            | Request to delete an organization                            |
+| /app/:orgId/newproject        | Request to create a new project for the current organization |
+| /app/:orgId/:projectId/edit   | Request to edit a project                                    |
+| /app/:orgId/:projectId/delete | Request to delete a project                                  |
