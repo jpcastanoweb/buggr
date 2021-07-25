@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-25T23:00:16.794Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="PYmni8rNlWNK3QK9ye88" version="14.9.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-25T23:10:43.633Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="vHJLaEFXslAjIyUfOPsd" version="14.9.2" type="github">
   <diagram id="DzUIId4ll-ulbjkrfadN" name="Page-1">
     <mxGraphModel dx="856" dy="622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -16,7 +16,7 @@
         <mxCell id="I_L6hPFMJSKXvp4w5YZE-9" value="Organization" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
           <mxGeometry x="260" y="40" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="I_L6hPFMJSKXvp4w5YZE-10" value="id: ObjectId&#xa;title: String *&#xa;admin: #User *&#xa;projects: [#Project] *&#xa;number_of_projects: Number&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="I_L6hPFMJSKXvp4w5YZE-9">
+        <mxCell id="I_L6hPFMJSKXvp4w5YZE-10" value="id: ObjectId&#xa;name: String *&#xa;admin: #User *&#xa;projects: [#Project] *&#xa;number_of_projects: Number&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="I_L6hPFMJSKXvp4w5YZE-9">
           <mxGeometry y="30" width="200" height="170" as="geometry" />
         </mxCell>
         <mxCell id="I_L6hPFMJSKXvp4w5YZE-16" value="Project" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
@@ -28,7 +28,7 @@
         <mxCell id="I_L6hPFMJSKXvp4w5YZE-18" value="Post" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
           <mxGeometry x="40" y="260" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="I_L6hPFMJSKXvp4w5YZE-19" value="id: ObjectId&#xa;belongsToProject: #Project*&#xa;dateCreated: Date *&#xa;author: #User&#xa;body: String&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="I_L6hPFMJSKXvp4w5YZE-18">
+        <mxCell id="I_L6hPFMJSKXvp4w5YZE-19" value="id: ObjectId&#xa;belongsTo: #Project*&#xa;dateCreated: Date *&#xa;author: #User&#xa;body: String&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="I_L6hPFMJSKXvp4w5YZE-18">
           <mxGeometry y="30" width="200" height="170" as="geometry" />
         </mxCell>
         <mxCell id="I_L6hPFMJSKXvp4w5YZE-20" value="Comments" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
