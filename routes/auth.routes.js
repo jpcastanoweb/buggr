@@ -10,6 +10,6 @@ router.get("/login", authController.login)
 router.post("/login", authController.submitLogin)
 
 /* Log Out */
-// router.post("/logout", authController.logout)
+router.post("/logout", authController.logout)
 
 module.exports = router

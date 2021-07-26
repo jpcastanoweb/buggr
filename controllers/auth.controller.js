@@ -80,11 +80,20 @@ exports.submitSignup = async (req, res, next) => {
   }
 
   try {
+    // hash password before signing up
     const salt = await bcryptjs.genSalt(10)
     const passwordHash = await bcryptjs.hashSync(password, salt)
+
+    //saving passwordHash to the user data
     userData.passwordHash = passwordHash
+
+    //creating new User
     const newUser = await User.create(userData)
-    console.log(newUser)
+
+    //saving user as current user in session
+    req.session.currentUser = newUser
+
+    //redirecting to hompage
     res.redirect("/")
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
@@ -112,25 +121,38 @@ exports.submitLogin = async (req, res, next) => {
   }
 
   try {
+    //looking for emain in database
     const user = await User.findOne({ email })
 
+    //if user doesn't exist (email wasn't found), refresh page
     if (!user) {
       return res.render("auth/login", {
         msg: "Wrong email and/or password. Please try again",
       })
     }
 
+    //make sure password matches user's
     const authVerified = bcryptjs.compareSync(password, user.passwordHash)
 
+    //if password doesn't match
     if (!authVerified) {
       return res.render("auth/login", {
         msg: "Wrong email and/or password. Please try again",
       })
     }
 
+    //start session and redirect to homepage
     console.log("Logged in as:", user)
+    req.session.currentUser = user
     return res.redirect("/")
   } catch (error) {
     console.log("Error logging in", error)
   }
+}
+
+exports.logout = async (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) next(err)
+    res.redirect("/")
+  })
 }
