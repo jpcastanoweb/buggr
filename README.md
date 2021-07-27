@@ -95,7 +95,7 @@ Comment
 | /app                        | Homepage for application                                                                        |
 | /app/myprofile              | User's profile                                                                                  |
 | /app/myprofile/edit         | Edit User's profile                                                                             |
-| /app/neworg                 | Create a new organization                                                                       |
+| /app/createOrg              | Create a new organization                                                                       |
 | /app/:orgId                 | Organization's page                                                                             |
 | /app/:orgId/edit            | Edit organization                                                                               |
 | /app/:orgId/newproject      | Create a new project for the current organization                                               |
@@ -109,7 +109,7 @@ Comment
 | /register                     | Request to register as a user                                |
 | /login                        | Request to login to your account                             |
 | /contactus                    | Submit form to contact us for any information or request.    |
-| /app/neworg                   | Request to create a new organization                         |
+| /app/createOrg                | Request to create a new organization                         |
 | /app/myprofile/edit           | Request to edit User's profile                               |
 | /app/:orgId/edit              | Request to edit organization                                 |
 | /app/:orgId/delete            | Request to delete an organization                            |

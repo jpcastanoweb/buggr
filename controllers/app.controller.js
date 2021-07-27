@@ -13,7 +13,7 @@ exports.editMyProfile = async (req, res, next) => {
   res.render("app/editMyProfile")
 }
 exports.createOrg = async (req, res, next) => {
-  res.render("app/newOrg")
+  res.render("app/createOrg")
 }
 exports.org = async (req, res, next) => {
   res.render("app/singleOrg")
@@ -58,7 +58,35 @@ exports.submitEditMyProfile = async (req, res, next) => {
     console.log(error.message)
   }
 }
-exports.submitCreateOrg = async (req, res, next) => {}
+
+exports.submitCreateOrg = async (req, res, next) => {
+  const { name } = req.body
+
+  try {
+    const newOrg = await Organization.create({
+      name,
+      admin: req.session.currentUser._id,
+      projects: [],
+      users: [req.session.currentUser._id],
+      number_of_projects: 0,
+    })
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.session.currentUser._id,
+      { $push: { organizations: newOrg._id } },
+      { new: true }
+    )
+
+    console.log("New Org ", newOrg)
+    console.log("Updated User", updatedUser)
+
+    req.session.currentUser = updatedUser
+    req.session.currentOrg = newOrg
+    res.redirect("/app/dashboard")
+  } catch (error) {
+    console.log("Error creating new org", error)
+  }
+}
 exports.submitEditOrg = async (req, res, next) => {}
 exports.submitDeleteOrg = async (req, res, next) => {}
 exports.submitCreateProject = async (req, res, next) => {}

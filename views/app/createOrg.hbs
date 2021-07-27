@@ -1,0 +1,18 @@
+<h1>Create Org</h1>
+
+<div id="form">
+  <form action="/app/createorg" method="POST">
+ 
+    <label> Name 
+      <input type="text" name="name" placeholder="Org Name" />
+      *
+    </label>
+    <br />
+    <br />
+    <button type="submit">Create New Organization</button>
+ 
+    {{#if msg}}
+      <p class="error">{{msg}}</p>
+    {{/if}}
+  </form>
+</div>
