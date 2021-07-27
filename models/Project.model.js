@@ -35,7 +35,7 @@ const projectSchema = new Schema(
       match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
     },
     posts: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Organization" }],
+      type: [{ type: Schema.Types.ObjectId, ref: "Post" }],
       default: [],
     },
     documents: {
