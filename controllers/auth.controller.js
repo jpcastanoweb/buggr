@@ -16,15 +16,6 @@ exports.submitSignup = async (req, res, next) => {
     lastName,
     role,
   } = req.body
-  console.log(
-    username,
-    email,
-    password,
-    confirmPassword,
-    firstName,
-    lastName,
-    role
-  )
 
   // Checking all fields were filled
   if (
@@ -137,7 +128,7 @@ exports.submitLogin = async (req, res, next) => {
   }
 
   try {
-    //looking for emain in database
+    //looking for email in database
     const user = await User.findOne({ email })
 
     //if user doesn't exist (email wasn't found), refresh page
@@ -157,8 +148,8 @@ exports.submitLogin = async (req, res, next) => {
       })
     }
 
-    //start session and redirect to homepage
-    console.log("Logged in as:", user)
+    /* start session and redirect to homepage */
+
     //saving user as current user in session
     req.session.currentUser = user
 
