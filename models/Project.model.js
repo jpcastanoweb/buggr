@@ -8,6 +8,10 @@ const projectSchema = new Schema(
       required: [true, "Project title is required."],
       minLength: 3,
     },
+    belongsTo: {
+      type: Schema.Types.ObjectId,
+      ref: "Organization",
+    },
     startDate: Date,
     goalDate: Date,
     currentStage: {
