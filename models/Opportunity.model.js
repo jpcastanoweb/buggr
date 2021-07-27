@@ -1,15 +1,15 @@
 const { Schema, model } = require("mongoose")
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const projectSchema = new Schema(
+const opportunitySchema = new Schema(
   {
     title: {
       type: String,
       required: [true, "Project title is required."],
       minLength: 3,
     },
-    startDate: Date,
-    goalDate: Date,
+    openedDate: Date,
+    closeDate: Date,
     currentStage: {
       type: String,
     },
@@ -35,7 +35,7 @@ const projectSchema = new Schema(
       match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
     },
     posts: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Organization" }],
+      type: [{ type: Schema.Types.ObjectId, ref: "Post" }],
       default: [],
     },
     documents: {
@@ -48,6 +48,6 @@ const projectSchema = new Schema(
   }
 )
 
-const Project = model("Project", projectSchema)
+const Opportunity = model("Opportunity", projectSchema)
 
-module.exports = Project
+module.exports = Opportunity
