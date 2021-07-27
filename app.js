@@ -22,6 +22,7 @@ require("./config/session.config")(app)
 // Allow session access from everywhere
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
+  res.locals.currentOrg = req.session.currentOrg
   next()
 })
 

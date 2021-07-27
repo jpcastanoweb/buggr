@@ -1,4 +1,5 @@
 const User = require("./../models/User.model")
+const Organization = require("./../models/Organization.model")
 const mongoose = require("mongoose")
 const bcryptjs = require("bcryptjs")
 
@@ -90,16 +91,31 @@ exports.submitSignup = async (req, res, next) => {
     //creating new User
     const newUser = await User.create(userData)
 
-    //saving user as current user in session
-    req.session.currentUser = newUser
+    const newOrg = await Organization.create({
+      name: "My First Org",
+      admin: newUser._id,
+      projects: [],
+      users: [newUser._id],
+      number_of_projects: 0,
+    })
 
-    //redirecting to hompage
-    res.redirect("/")
+    const updatedUser = await User.findByIdAndUpdate(
+      newUser._id,
+      { $push: { organizations: newOrg._id } },
+      { new: true }
+    )
+
+    //saving user as current user in session
+    req.session.currentUser = updatedUser
+    req.session.currentOrg = newOrg
+
+    //redirecting to dashboard
+    res.redirect("/app")
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
-      res.status(500).render("auth/signup", { msg: error.message })
+      res.status(500).render("auth/login", { msg: error.message })
     } else if (error.code === 11000) {
-      res.status(500).render("auth/signup", {
+      res.status(500).render("auth/login", {
         msg: "Email or username are already in use. ",
       })
     } else {
@@ -143,8 +159,15 @@ exports.submitLogin = async (req, res, next) => {
 
     //start session and redirect to homepage
     console.log("Logged in as:", user)
+    //saving user as current user in session
     req.session.currentUser = user
-    return res.redirect("/app/dashboard")
+
+    //loading org to feed to dashboard
+    const currentOrg = await Organization.findById(user.organizations[0])
+    req.session.currentOrg = currentOrg
+
+    //redirecting to dashboard
+    return res.redirect("/app")
   } catch (error) {
     console.log("Error logging in", error)
   }

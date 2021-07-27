@@ -82,7 +82,7 @@ exports.submitCreateOrg = async (req, res, next) => {
 
     req.session.currentUser = updatedUser
     req.session.currentOrg = newOrg
-    res.redirect("/app/dashboard")
+    res.redirect("/app")
   } catch (error) {
     console.log("Error creating new org", error)
   }
