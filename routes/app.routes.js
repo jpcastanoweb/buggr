@@ -12,20 +12,28 @@ router.post("/myprofile/edit", isLoggedIn, appController.submitEditMyProfile)
 
 /* Organization */
 router.get("/createorg", isLoggedIn, appController.createOrg)
-router.get("/:orgId", isLoggedIn, appController.org)
-router.get("/:orgId/edit", isLoggedIn, appController.editOrg)
+router.get("/org/:orgId", isLoggedIn, appController.org)
+router.get("/org/:orgId/edit", isLoggedIn, appController.editOrg)
 
 router.post("/createorg", isLoggedIn, appController.submitCreateOrg)
-router.post("/:orgId/edit", isLoggedIn, appController.submitEditOrg)
-router.post("/:orgId/delete", isLoggedIn, appController.submitDeleteOrg)
+router.post("/org/:orgId/edit", isLoggedIn, appController.submitEditOrg)
+router.post("/org/:orgId/delete", isLoggedIn, appController.submitDeleteOrg)
 
 /* Project */
 router.get("/createproject", isLoggedIn, appController.createProject)
-router.get("/:projectId", isLoggedIn, appController.project)
-router.get("/:projectId/edit", isLoggedIn, appController.editProject)
+router.get("/project/:projectId", isLoggedIn, appController.project)
+router.get("/project/:projectId/edit", isLoggedIn, appController.editProject)
 
 router.post("/createproject", isLoggedIn, appController.submitCreateProject)
-router.post("/:projectId/edit", isLoggedIn, appController.submitEditProject)
-router.post("/:projectId/delete", isLoggedIn, appController.submitDeleteProject)
+router.post(
+  "/project/:projectId/edit",
+  isLoggedIn,
+  appController.submitEditProject
+)
+router.post(
+  "/project/:projectId/delete",
+  isLoggedIn,
+  appController.submitDeleteProject
+)
 
 module.exports = router
