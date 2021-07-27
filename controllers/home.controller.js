@@ -1,3 +1,7 @@
+exports.home = (req, res, next) => {
+  res.render("index")
+}
+
 exports.product = (req, res, next) => {
   res.render("home/product")
 }

@@ -1,29 +1,8 @@
-<nav class="navbar fixed-top navbar-light bg-light px-4 shadow">
-  <div class="d-flex container-fluid justify-content-between">
-    <a class="navbar-brand d-flex justify-content-start align-items-center me-0" href="#">
-        <img src="/images/main_logo_notext.png" alt="" width="50" class="d-inline-block align-text-top">
-        {{#if inApp}}
-        {{else}}
-        <span class="brand-title">Buggr</span>
-        {{/if}}
-    </a>
-    {{#if inApp}}
-    {{else}}
-    <ul class="nav nav-pills nav-links-edit">
-        <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/product">Product</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/aboutus">About Us</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/contactus">Contact Us</a>
-        </li>
-    </ul>
-    {{/if}}
+<nav class="navbar fixed-top navbar-light bg-light px-4 border-bottom">
+    <div class="d-flex container-fluid justify-content-between">
+        <a class="navbar-brand d-flex justify-content-start align-items-center me-0" href="#">
+            <img src="/images/main_logo_notext.png" alt="" width="50" class="d-inline-block align-text-top">
+        </a>
     <div class="nav nav-pills">
         {{#if currentUser}}
         <li class="nav-item dropdown">
@@ -49,5 +28,5 @@
         </li>
         {{/if}}
     </div>
-  </div>
-</nav>
+    </div>
+    </nav>

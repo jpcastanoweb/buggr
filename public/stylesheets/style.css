@@ -1,6 +1,19 @@
+/* MAIN COLORS 
+  Eton Blue: #7DCCAB
+  Tan: #D8C39B
+  Dark Blue Gray: #645e9d
+  Russian Violet: 392B58
+  Dark Purple: 2D320
+*/
+
+html {
+  margin: 0;
+  font-family: 14px 'Work Sans', sans-serif;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 76px;
+  /* background-color: #645e9d !important; */
 }
 
 a {
@@ -9,4 +22,45 @@ a {
 
 h1 {
   color: 15px;
+}
+
+.nav-bar-shadow {
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+}
+
+.brand-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  color: #392B58;
+}
+
+.nav-links-edit a {
+  text-decoration: none;
+  color: #392B58;
+}
+
+.sign-in-btn {
+  background-color: #392B58 !important; 
+  border-color: #392B58 !important;
+  color: white;
+}
+
+.sign-in-btn:hover {
+  background-color: #5c4d7c !important; 
+  border-color: #5c4d7c !important;
+}
+
+
+.menu-dropdown-edit {
+  background-color: #392B58 !important; 
+  border-color: #392B58 !important;
+  color: white !important;
+}
+.menu-dropdown-edit a {
+  color: #392B58 !important;
+}
+
+.org-selector-container {
+  height: 70px;
+  background-color: #7DCCAB;
 }

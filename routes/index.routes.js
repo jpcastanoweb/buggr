@@ -1,13 +1,14 @@
 const router = require("express").Router()
 const homeController = require("./../controllers/home.controller")
+const { inApp, outApp } = require("./../middleware/header-setter")
 
 /* GET home page */
-router.get("/", (req, res, next) => {
+router.get("/", outApp, (req, res, next) => {
   res.render("index")
 })
 
-router.get("/aboutus", homeController.aboutus)
-router.get("/product", homeController.product)
-router.get("/contactus", homeController.contactus)
+router.get("/aboutus", outApp, homeController.aboutus)
+router.get("/product", outApp, homeController.product)
+router.get("/contactus", outApp, homeController.contactus)
 
 module.exports = router

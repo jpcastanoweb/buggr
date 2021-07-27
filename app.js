@@ -23,6 +23,7 @@ require("./config/session.config")(app)
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
   res.locals.currentOrg = req.session.currentOrg
+  res.locals.inApp = req.session.inApp
   next()
 })
 
@@ -31,11 +32,11 @@ const projectName = "buggr"
 const capitalized = (string) =>
   string[0].toUpperCase() + string.slice(1).toLowerCase()
 
-app.locals.title = `${capitalized(projectName)} created with IronLauncher`
+app.locals.title = `${capitalized(projectName)}`
 
 // 👇 Start handling routes here
-const indexRoutes = require("./routes/index.routes")
-app.use("/", indexRoutes)
+const homeRoutes = require("./routes/index.routes")
+app.use("/", homeRoutes)
 
 const authRoutes = require("./routes/auth.routes")
 app.use("/", authRoutes)

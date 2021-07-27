@@ -1,4 +1,16 @@
+<div class="container-fluid d-flex justify-content-center border-bottom org-selector-container">
+    <div class="d-flex justify-content-between align-items-center org-selector">
+        <span class="me-3 fs-3">Organization: </span>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>{{currentOrg.name}}</option>
+            {{#each userOrgs}}
+                <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+</div>
 <h1>{{currentOrg.name}}</h1>
+
 
 <h3>Opportunities:</h3>
 {{#each opps}}

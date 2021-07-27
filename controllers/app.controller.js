@@ -6,6 +6,21 @@ const User = require("./../models/User.model")
 /* GET requests */
 exports.dashboard = async (req, res, next) => {
   try {
+    const orgs = []
+
+    for (let i = 0; i < req.session.currentUser.organizations.length; i++) {
+      const org = await Organization.findById(
+        req.session.currentUser.organizations[i]
+      )
+
+      if (req.session.currentOrg._id.toString() !== org._id.toString()) {
+        orgs.push({
+          name: org.name,
+          id: org._id,
+        })
+      }
+    }
+
     const oppIds = await Opportunity.find({
       belongsTo: req.session.currentOrg._id,
     })
@@ -17,6 +32,7 @@ exports.dashboard = async (req, res, next) => {
     return res.render("app/dashboard", {
       projects: projectIds,
       opps: oppIds,
+      userOrgs: orgs,
     })
   } catch (error) {
     console.log("Error loading dashboard", error)
