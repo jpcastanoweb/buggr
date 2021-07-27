@@ -1,5 +1,6 @@
 const Organization = require("./../models/Organization.model")
 const Project = require("./../models/Project.model")
+const User = require("./../models/User.model")
 
 /* GET requests */
 exports.dashboard = async (req, res, next) => {
@@ -31,7 +32,32 @@ exports.editProject = async (req, res, next) => {
 }
 
 /* POST requests */
-exports.submitEditMyProfile = async (req, res, next) => {}
+exports.submitEditMyProfile = async (req, res, next) => {
+  const { username, email, firstName, lastName, role } = req.body
+  console.log(username, email, firstName, lastName, role)
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.session.currentUser._id,
+      {
+        username,
+        email,
+        firstName,
+        lastName,
+        role,
+      },
+      {
+        new: true,
+      }
+    )
+
+    console.log("Updated user: ", updatedUser)
+    req.session.currentUser = updatedUser
+    res.redirect("/app/myprofile")
+  } catch (error) {
+    console.log(error.message)
+  }
+}
 exports.submitCreateOrg = async (req, res, next) => {}
 exports.submitEditOrg = async (req, res, next) => {}
 exports.submitDeleteOrg = async (req, res, next) => {}

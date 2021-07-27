@@ -1,1 +1,11 @@
 <h1>My Profile</h1>
+
+{{#with currentUser}}
+<p>Username: {{username}}</p>
+<p>Email: {{email}}</p>
+<p>First Name: {{firstName}}</p>
+<p>Last Name: {{lastName}}</p>
+<p>Role: {{role}}</p>
+{{/with}}
+
+<a href="./myprofile/edit">Edit Info</a>

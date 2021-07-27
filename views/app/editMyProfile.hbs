@@ -1,1 +1,32 @@
 <h1>Edit Profile </h1>
+
+<div id="form">
+  <form action="/app/myprofile/edit" method="POST">
+    <label> Username
+      <input type="text" name="username" placeholder="Username" value="{{currentUser.username}}"/>
+    </label>
+    <br />
+    <label> Email
+      <input type="email" name="email" placeholder="rockstar@ironhack.com" value="{{currentUser.email}}"/>
+    </label>
+    <br />
+    <label> First Name
+      <input type="text" name="firstName" placeholder="First Name" value="{{currentUser.firstName}}"/>
+    </label>
+    <br />
+    <label> Last Name
+      <input type="text" name="lastName" placeholder="Last Name" value="{{currentUser.lastName}}" />
+    </label>
+    <br />
+    <label> Role
+      <input type="text" name="role" placeholder="Role" value="{{currentUser.role}}"/>
+    </label>
+    <br />
+
+    <button type="submit">Update</button>
+ 
+    {{#if msg}}
+      <p class="error">{{msg}}</p>
+    {{/if}}
+  </form>
+</div>

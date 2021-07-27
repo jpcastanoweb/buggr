@@ -144,7 +144,7 @@ exports.submitLogin = async (req, res, next) => {
     //start session and redirect to homepage
     console.log("Logged in as:", user)
     req.session.currentUser = user
-    return res.redirect("/")
+    return res.redirect("/app/dashboard")
   } catch (error) {
     console.log("Error logging in", error)
   }
