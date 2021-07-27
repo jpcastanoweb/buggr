@@ -36,4 +36,13 @@ router.post(
   appController.submitDeleteProject
 )
 
+/* Opportunity */
+router.get("/createopp", isLoggedIn, appController.createOpp)
+router.get("/opp/:oppId", isLoggedIn, appController.opp)
+router.get("/opp/:oppId/edit", isLoggedIn, appController.opp)
+
+router.post("/createopp", isLoggedIn, appController.submitCreateOpp)
+router.post("/opp/:oppId/edit", isLoggedIn, appController.submitEditOpp)
+router.post("/opp/:oppId/opp", isLoggedIn, appController.submitDeleteOpp)
+
 module.exports = router

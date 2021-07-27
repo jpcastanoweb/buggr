@@ -1,16 +1,26 @@
 const Organization = require("./../models/Organization.model")
 const Project = require("./../models/Project.model")
+const Opportunity = require("./../models/Opportunity.model")
 const User = require("./../models/User.model")
 
 /* GET requests */
 exports.dashboard = async (req, res, next) => {
-  const projectIds = await Project.find({
-    belongsTo: req.session.currentOrg._id,
-  })
+  try {
+    const oppIds = await Opportunity.find({
+      belongsTo: req.session.currentOrg._id,
+    })
 
-  return res.render("app/dashboard", {
-    projects: projectIds,
-  })
+    const projectIds = await Project.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    return res.render("app/dashboard", {
+      projects: projectIds,
+      opps: oppIds,
+    })
+  } catch (error) {
+    console.log("Error loading dashboard", error)
+  }
 }
 exports.myprofile = async (req, res, next) => {
   return res.render("app/myprofile")
@@ -35,6 +45,15 @@ exports.project = async (req, res, next) => {
 }
 exports.editProject = async (req, res, next) => {
   return res.render("app/editProject")
+}
+exports.createOpp = async (req, res, next) => {
+  return res.render("app/newOpp")
+}
+exports.opp = async (req, res, next) => {
+  return res.render("app/singleOpp")
+}
+exports.editOpp = async (req, res, next) => {
+  return res.render("app/editOpp")
 }
 
 /* POST requests */
@@ -71,8 +90,10 @@ exports.submitCreateOrg = async (req, res, next) => {
       name,
       admin: req.session.currentUser._id,
       projects: [],
+      opportunities: [],
       users: [req.session.currentUser._id],
       number_of_projects: 0,
+      number_of_opportunities: 0,
     })
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -134,3 +155,47 @@ exports.submitCreateProject = async (req, res, next) => {
 }
 exports.submitEditProject = async (req, res, next) => {}
 exports.submitDeleteProject = async (req, res, next) => {}
+exports.submitCreateOpp = async (req, res, next) => {
+  //create new project
+  const {
+    title,
+    openedDate,
+    closeDate,
+    dollarValue,
+    contactFullName,
+    contactPhoneNumber,
+    contactEmailAddress,
+  } = req.body
+
+  try {
+    const newOpp = await Opportunity.create({
+      title,
+      belongsTo: req.session.currentOrg._id,
+      openedDate,
+      closeDate,
+      currentStage: "New",
+      dollarValue,
+      contactFullName,
+      contactPhoneNumber,
+      contactEmailAddress,
+      posts: [],
+      documents: [],
+    })
+
+    const currentOrg = await Organization.findByIdAndUpdate(
+      req.session.currentOrg,
+      { $push: { opportunities: newOpp._id } },
+      { new: true }
+    )
+
+    //updating currentOrg in session
+    req.session.currentOrg = currentOrg
+
+    //redirect to app dashboard
+    return res.redirect("/app")
+  } catch (error) {
+    console.log("Error while creating project", error)
+  }
+}
+exports.submitEditOpp = async (req, res, next) => {}
+exports.submitDeleteOpp = async (req, res, next) => {}

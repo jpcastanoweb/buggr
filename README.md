@@ -60,6 +60,22 @@ Project
 | posts               | [ #ObjectId ] |
 | documents           | [ #ObjectId ] |
 
+Opportunity
+
+| Property            | Value         |
+| ------------------- | ------------- |
+| id                  | ObjectId      |
+| title               | String \*     |
+| openedDate          | Date          |
+| closeDate           | Date          |
+| currentStage        | String \*     |
+| dollarValue         | String \*     |
+| contactFullName     | String \*     |
+| contactPhoneNumber  | String \*     |
+| contactEmailAddress | String \*     |
+| posts               | [ #ObjectId ] |
+| documents           | [ #ObjectId ] |
+
 Post
 
 | Property    | Value         |
@@ -84,35 +100,41 @@ Comment
 
 ### GET Methods
 
-| Ruta                        | Descripción                                                                                     |
-| --------------------------- | ----------------------------------------------------------------------------------------------- |
-| /                           | Home. Website landing where the user and get information about Buggr's value and functionality. |
-| /aboutus                    | Information about the team behind Buggr                                                         |
-| /product                    | Information about Buggr, its capabilities and value                                             |
-| /contactus                  | Form to contact us for any information or request.                                              |
-| /register                   | Register as a user                                                                              |
-| /login                      | Login to your account                                                                           |
-| /app                        | Homepage for application                                                                        |
-| /app/myprofile              | User's profile                                                                                  |
-| /app/myprofile/edit         | Edit User's profile                                                                             |
-| /app/createOrg              | Create a new organization                                                                       |
-| /app/:orgId                 | Organization's page                                                                             |
-| /app/:orgId/edit            | Edit organization                                                                               |
-| /app/:orgId/newproject      | Create a new project for the current organization                                               |
-| /app/:orgId/:projectId      | Project's page                                                                                  |
-| /app/:orgId/:projectId/edit | Edit a project                                                                                  |
+| Ruta                         | Descripción                                                                                     |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| /                            | Home. Website landing where the user and get information about Buggr's value and functionality. |
+| /aboutus                     | Information about the team behind Buggr                                                         |
+| /product                     | Information about Buggr, its capabilities and value                                             |
+| /contactus                   | Form to contact us for any information or request.                                              |
+| /register                    | Register as a user                                                                              |
+| /login                       | Login to your account                                                                           |
+| /app                         | Application Dashboard                                                                           |
+| /app/myprofile               | User's profile                                                                                  |
+| /app/myprofile/edit          | Edit User's profile                                                                             |
+| /app/createOrg               | Create a new organization                                                                       |
+| /app/org/:orgId              | Organization's page                                                                             |
+| /app/org/:orgId/edit         | Edit organization                                                                               |
+| /app/createproject           | Create a new project for the current organization                                               |
+| /app/project/:projectId      | Project's page                                                                                  |
+| /app/project/:projectId/edit | Edit a project                                                                                  |
+| /app/createopp               | Create a new opportunity for the current organization                                           |
+| /app/opp/:oppId              | Opportunity's page                                                                              |
+| /app/opp/:oppId/edit         | Edit an opportunity                                                                             |
 
 ### Métodos POST
 
-| Ruta                          | Descripción                                                  |
-| ----------------------------- | ------------------------------------------------------------ |
-| /register                     | Request to register as a user                                |
-| /login                        | Request to login to your account                             |
-| /contactus                    | Submit form to contact us for any information or request.    |
-| /app/createOrg                | Request to create a new organization                         |
-| /app/myprofile/edit           | Request to edit User's profile                               |
-| /app/:orgId/edit              | Request to edit organization                                 |
-| /app/:orgId/delete            | Request to delete an organization                            |
-| /app/:orgId/newproject        | Request to create a new project for the current organization |
-| /app/:orgId/:projectId/edit   | Request to edit a project                                    |
-| /app/:orgId/:projectId/delete | Request to delete a project                                  |
+| Ruta                           | Descripción                                                      |
+| ------------------------------ | ---------------------------------------------------------------- |
+| /register                      | Request to register as a user                                    |
+| /login                         | Request to login to your account                                 |
+| /contactus                     | Submit form to contact us for any information or request.        |
+| /app/myprofile/edit            | Request to edit User's profile                                   |
+| /app/createOrg                 | Request to create a new organization                             |
+| /app/org/:orgId/edit           | Request to edit organization                                     |
+| /app/org/:orgId/delete         | Request to delete an organization                                |
+| /app/createproject             | Request to create a new project for the current organization     |
+| /app/project/:projectId/edit   | Request to edit a project                                        |
+| /app/project/:projectId/delete | Request to delete a project                                      |
+| /app/createopp                 | Request to create a new opportunity for the current organization |
+| /app/opp/:oppId/edit           | Request to edit an opportunity                                   |
+| /app/opp/:oppId/delete         | Request to delete an opportunity                                 |

@@ -8,6 +8,10 @@ const opportunitySchema = new Schema(
       required: [true, "Project title is required."],
       minLength: 3,
     },
+    belongsTo: {
+      type: Schema.Types.ObjectId,
+      ref: "Organization",
+    },
     openedDate: Date,
     closeDate: Date,
     currentStage: {
@@ -48,6 +52,6 @@ const opportunitySchema = new Schema(
   }
 )
 
-const Opportunity = model("Opportunity", projectSchema)
+const Opportunity = model("Opportunity", opportunitySchema)
 
 module.exports = Opportunity

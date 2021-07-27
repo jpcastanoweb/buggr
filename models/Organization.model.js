@@ -16,6 +16,10 @@ const organizationSchema = new Schema(
       type: [{ type: Schema.Types.ObjectId, ref: "Project" }],
       default: [],
     },
+    opportunities: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Opportunity" }],
+      default: [],
+    },
     users: {
       type: [{ type: Schema.Types.ObjectId, ref: "User" }],
       default: [],

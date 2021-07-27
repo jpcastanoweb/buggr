@@ -1,5 +1,12 @@
 <h1>{{currentOrg.name}}</h1>
 
+<h3>Opportunities:</h3>
+{{#each opps}}
+    <p>{{this.title}}</p>
+{{/each}}
+
+<a href="/app/createopp">+ Opportunity</a>
+
 <h3>Projects:</h3>
 {{#each projects}}
     <p>{{this.title}}</p>
