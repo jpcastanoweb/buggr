@@ -19,6 +19,12 @@ const app = express()
 require("./config")(app)
 require("./config/session.config")(app)
 
+// Allow session access from everywhere
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.currentUser
+  next()
+})
+
 // default value for title local
 const projectName = "buggr"
 const capitalized = (string) =>
@@ -27,11 +33,14 @@ const capitalized = (string) =>
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`
 
 // 👇 Start handling routes here
-const index = require("./routes/index.routes")
-app.use("/", index)
+const indexRoutes = require("./routes/index.routes")
+app.use("/", indexRoutes)
 
-const auth = require("./routes/auth.routes")
-app.use("/", auth)
+const authRoutes = require("./routes/auth.routes")
+app.use("/", authRoutes)
+
+const appRoutes = require("./routes/app.routes")
+app.use("/app", appRoutes)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app)

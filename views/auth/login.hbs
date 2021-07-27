@@ -12,9 +12,52 @@
     </label>
     
     <button type="submit">Log In</button>
- 
-    {{#if msg}}
-      <p class="error">{{msg}}</p>
-    {{/if}}
   </form>
 </div>
+<br/>
+<br/>
+<div id="form">
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
+ 
+    <label> Username 
+      <input type="text" name="username" placeholder="myusername" />
+      *
+    </label>
+    <br />
+    <label> Email:
+      <input type="email" name="email" placeholder="example@ironhack.com" />
+      *
+    </label>
+    <br />
+    <label> Password:
+      <input type="password" name="password" placeholder="********" id="signup-password" />
+      *
+    </label>
+    <br />
+    <label> Confirm Password:
+      <input type="password" name="confirmPassword" placeholder="********" id="signup-confirm-password" />
+      *
+    </label>
+    <br />
+    <label> First Name: 
+      <input type="text" name="firstName" placeholder="Joe" />
+      *
+    </label>
+    <br />
+    <label> Last Name: 
+      <input type="text" name="lastName" placeholder="Appleseed" />
+      *
+    </label>
+    <br />
+    <label> Role: 
+      <input type="text" name="role" placeholder="Project Manager" />
+    </label>
+    <br />
+    <button type="submit">Create account</button>
+  </form>
+</div>
+
+{{#if msg}}
+  <p class="error">{{msg}}</p>
+{{/if}}

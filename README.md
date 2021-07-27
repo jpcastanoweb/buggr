@@ -84,25 +84,23 @@ Comment
 
 ### GET Methods
 
-| Ruta                          | Descripción                                                                                     |
-| ----------------------------- | ----------------------------------------------------------------------------------------------- |
-| /                             | Home. Website landing where the user and get information about Buggr's value and functionality. |
-| /aboutus                      | Information about the team behind Buggr                                                         |
-| /product                      | Information about Buggr, its capabilities and value                                             |
-| /contactus                    | Form to contact us for any information or request.                                              |
-| /register                     | Register as a user                                                                              |
-| /login                        | Login to your account                                                                           |
-| /app                          | Homepage for application                                                                        |
-| /app/myprofile                | User's profile                                                                                  |
-| /app/myprofile/edit           | Edit User's profile                                                                             |
-| /app/neworg                   | Create a new organization                                                                       |
-| /app/:orgId                   | Organization's page                                                                             |
-| /app/:orgId/edit              | Edit organization                                                                               |
-| /app/:orgId/delete            | Delete an organization                                                                          |
-| /app/:orgId/newproject        | Create a new project for the current organization                                               |
-| /app/:orgId/:projectId        | Project's page                                                                                  |
-| /app/:orgId/:projectId/edit   | Edit a project                                                                                  |
-| /app/:orgId/:projectId/delete | Delete a project                                                                                |
+| Ruta                        | Descripción                                                                                     |
+| --------------------------- | ----------------------------------------------------------------------------------------------- |
+| /                           | Home. Website landing where the user and get information about Buggr's value and functionality. |
+| /aboutus                    | Information about the team behind Buggr                                                         |
+| /product                    | Information about Buggr, its capabilities and value                                             |
+| /contactus                  | Form to contact us for any information or request.                                              |
+| /register                   | Register as a user                                                                              |
+| /login                      | Login to your account                                                                           |
+| /app                        | Homepage for application                                                                        |
+| /app/myprofile              | User's profile                                                                                  |
+| /app/myprofile/edit         | Edit User's profile                                                                             |
+| /app/neworg                 | Create a new organization                                                                       |
+| /app/:orgId                 | Organization's page                                                                             |
+| /app/:orgId/edit            | Edit organization                                                                               |
+| /app/:orgId/newproject      | Create a new project for the current organization                                               |
+| /app/:orgId/:projectId      | Project's page                                                                                  |
+| /app/:orgId/:projectId/edit | Edit a project                                                                                  |
 
 ### Métodos POST
 
