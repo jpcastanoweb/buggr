@@ -1,0 +1,49 @@
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Opportunities</h2>
+                <button class="new-btn">+ New Opportunity</button>
+            </div>
+            
+            <hr>
+            <div class="py-2">
+                <p>Potential Revenue: $150,000</p> 
+                <p>Number of Opportunities: 16</p>
+            </div>
+            <hr>
+            <h5>All Opportunities</h5>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="">
+                        <tr>
+                            <th scope="col">Opportunity</th>
+                            <th scope="col">Stage</th>
+                            <th scope="col">Value</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Date Opened</th>
+                            <th scope="col">Expected Close Date</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each opps}}
+                            <tr>
+                                <td>{{title}}</td>
+                                <td>{{currentStage}}</td>
+                                <td>{{dollarValue}}</td>
+                                <td>{{contactFullName}}</td>
+                                <td></td>
+                                <td></td>
+                                <td><a href="/app/opp/{{_id}}/edit">Edit</a></td>
+                                <td><a href="">Delete</a></td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

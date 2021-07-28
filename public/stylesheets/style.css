@@ -96,3 +96,11 @@ h1 {
   background-color: #5c4d7c;
   color: #D8C39B !important;
 }
+
+.new-btn {
+  background-color: #392B58 !important; 
+  border-color: #392B58 !important;
+  border-radius: 40px;
+  padding: 5px 10px;
+  color:white;
+}

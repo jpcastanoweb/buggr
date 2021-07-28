@@ -4,7 +4,7 @@ const { isLoggedIn, isLoggedOut } = require("./../middleware/route-guard")
 const { inApp, outApp } = require("./../middleware/header-setter")
 
 /* Dashboard */
-router.get("/", isLoggedIn, inApp, appController.dashboard)
+router.get("/", isLoggedIn, inApp, appController.opportunities)
 
 /* Profile */
 router.get("/myprofile", isLoggedIn, inApp, appController.myprofile)
@@ -53,4 +53,6 @@ router.post("/createopp", isLoggedIn, inApp, appController.submitCreateOpp)
 router.post("/opp/:oppId/edit", isLoggedIn, inApp, appController.submitEditOpp)
 router.post("/opp/:oppId/opp", isLoggedIn, inApp, appController.submitDeleteOpp)
 
+/* Customers */
+router.get("/customers", isLoggedIn, inApp, appController.customers)
 module.exports = router

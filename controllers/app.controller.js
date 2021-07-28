@@ -2,6 +2,7 @@ const Organization = require("./../models/Organization.model")
 const Project = require("./../models/Project.model")
 const Opportunity = require("./../models/Opportunity.model")
 const User = require("./../models/User.model")
+//TODO Add Customers
 
 /* GET requests */
 exports.dashboard = async (req, res, next) => {
@@ -72,10 +73,25 @@ exports.editOpp = async (req, res, next) => {
   return res.render("app/editOpp")
 }
 exports.opportunities = async (req, res, next) => {
-  return res.render("app/opportunities")
+  try {
+    const oppIds = await Opportunity.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    return res.render("app/opportunities", {
+      opps: oppIds,
+    })
+  } catch (error) {
+    console.log("Error loading opportunities", error)
+  }
+
+  // return res.render("app/opportunities")
 }
 exports.projects = async (req, res, next) => {
   return res.render("app/projects")
+}
+exports.customers = async (req, res, next) => {
+  return res.render("app/customers")
 }
 
 /* POST requests */
