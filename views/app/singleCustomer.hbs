@@ -2,9 +2,108 @@
     {{>appheader}}
     <div class="w-100 ps-0">
         <div class="app-content px-5 pt-4">
+            {{#with customer}}
             <h2>{{name}}</h2>
-            <span><a class="fs-6" href="/app/opps/edit/{{_id}}">Edit Customer</a></span>
+            <span class="me-3"><a class="fs-6" href="/app/customers/edit/{{_id}}">Edit</a></span>
+            <span class="me-3"><a class="fs-6" href="">Delete</a></span>
             <hr>
+            <div class="container-lg px-0">
+                <div class="row">
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">New Business</p>
+                        <p class="fs-5">$100,000</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Lifetime Revenue</p>
+                        <p class="fs-5">$200,000</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Customer Since</p>
+                        <p class="fs-5">03/25/2020</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Contact Full Name</p>
+                        <p class="fs-5">{{contactInfo.firstName}} {{contactInfo.lastName}}</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Contact Email Address</p>
+                        <p class="fs-5">{{contactInfo.emailAddress}}</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Contact Phone Number</p>
+                        <p class="fs-5">{{contactInfo.phoneNumber}}</p>
+                    </div>
+                </div>
+            {{/with}}
+                <hr>
+                <br />
+                <h4>Opportunities</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="">
+                            <tr>
+                                <th scope="col">Opportunity</th>
+                                <th scope="col">Stage</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Date Opened</th>
+                                <th scope="col">Expected Close Date</th>
+                                <th scope="col">View</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each opps}}
+                                <tr>
+                                    <td>{{title}}</td>
+                                    <td>{{currentStage}}</td>
+                                    <td>{{dollarValue}}</td>
+                                    <td>{{openedDateString}}</td>
+                                    <td>{{closeDateString}}</td>
+                                    <td><a href="/app/opps/{{_id}}">View</a> </td>
+                                    <td><a href="/app/opps/edit/{{_id}}">Edit</a></td>
+                                    <td><a href="">Delete</a></td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <br />
+                <h4>Projects</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Project</th>
+                                <th scope="col">Stage</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">Goal Date</th>
+                                <th scope="col">View</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each projects}}
+                                <tr>
+                                    <td>{{title}}</td>
+                                    <td>{{currentStage}}</td>
+                                    <td>{{dollarValue}}</td>
+                                    <td>{{startDateString}}</td>
+                                    <td>{{goalDateString}}</td>
+                                    <td><a href="/app/projects/{{_id}}">View</a></td>
+                                    <td><a href="/app/projects/edit/{{_id}}">Edit</a></td>
+                                    <td><a href="">Delete</a></td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

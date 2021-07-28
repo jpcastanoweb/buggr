@@ -105,7 +105,8 @@ exports.opp = async (req, res, next) => {
   const { oppId } = req.params
 
   try {
-    const opp = await Opportunity.findById(oppId)
+    let opp = await Opportunity.findById(oppId).populate("forCustomer")
+    console.log("Populated opp", opp)
 
     return res.render("app/singleOpp", opp)
   } catch (error) {
@@ -134,9 +135,29 @@ exports.customer = async (req, res, next) => {
   try {
     const customer = await Customer.findById(customerId)
 
-    console.log(customer)
+    //getting projects
+    const projects = await Project.find({ forCustomer: customerId })
+    //getting opportunities
+    const opps = await Opportunity.find({ forCustomer: customerId })
 
-    return res.render("app/singleCustomer", customer)
+    // populating dates
+    for (let i = 0; i < opps.length; i++) {
+      // change date to readable
+      opps[i].openedDateString = opps[i].openedDate.toDateString()
+      opps[i].closeDateString = opps[i].closeDate.toDateString()
+    }
+
+    for (let i = 0; i < projects.length; i++) {
+      // change date to readable
+      projects[i].startDateString = projects[i].startDate.toDateString()
+      projects[i].goalDateString = projects[i].goalDate.toDateString()
+    }
+
+    return res.render("app/singleCustomer", {
+      customer,
+      projects,
+      opps,
+    })
   } catch (error) {
     console.log("Error loading customer page", error.message)
   }
