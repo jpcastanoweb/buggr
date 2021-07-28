@@ -10,16 +10,20 @@
             <div class="container-lg px-0">
                 <div class="row">
                     <div class="col d-flow flex-column">
-                        <p class="mb-1 fs-7">New Business</p>
-                        <p class="fs-5">$100,000</p>
+                        <p class="mb-1 fs-7">Potential Business</p>
+            {{/with}}
+                        <p class="fs-5">{{potentialRevString}}</p>
+            {{#with customer}}
                     </div>
                     <div class="col d-flow flex-column">
-                        <p class="mb-1 fs-7">Lifetime Revenue</p>
-                        <p class="fs-5">$200,000</p>
+                        <p class="mb-1 fs-7">Project Revenue</p>
+            {{/with}}
+                        <p class="fs-5">{{projectRevString}}</p>
+            {{#with customer}}
                     </div>
                     <div class="col d-flow flex-column">
                         <p class="mb-1 fs-7">Customer Since</p>
-                        <p class="fs-5">03/25/2020</p>
+                        <p class="fs-5">03/25/2020</p> {{!-- TODO: Change to actual date --}}
                     </div>
                 </div>
                 <div class="row">

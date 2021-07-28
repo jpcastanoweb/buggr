@@ -5,15 +5,26 @@ const Opportunity = require("./../models/Opportunity.model")
 const User = require("./../models/User.model")
 const Customer = require("./../models/Customer.model")
 
-//Currency formatter.
-var formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
+function toDollarString(val) {
+  let formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
 
-  // These options are needed to round to whole numbers if that's what you want.
-  minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-  maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-})
+    // These options are needed to round to whole numbers if that's what you want.
+    minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  })
+
+  return formatter.format(val)
+}
+
+function getCustomerRevString(projects) {
+  let totalRev = 0
+  for (let i = 0; i < projects.length; i++) {
+    totalRev += Number(projects[i].dollarValue.replace(/[^0-9.-]+/g, ""))
+  }
+  return toDollarString(totalRev)
+}
 
 /* GET requests */
 exports.myprofile = async (req, res, next) => {
@@ -115,23 +126,40 @@ exports.customer = async (req, res, next) => {
     //getting opportunities
     const opps = await Opportunity.find({ forCustomer: customerId })
 
-    // populating dates
+    // populating dates and adding potential revenue
+    let potentialNewBusiness = 0
     for (let i = 0; i < opps.length; i++) {
       // change date to readable
       opps[i].openedDateString = opps[i].openedDate.toDateString()
       opps[i].closeDateString = opps[i].closeDate.toDateString()
-    }
 
+      // add potential New Business
+      potentialNewBusiness += Number(
+        opps[i].dollarValue.replace(/[^0-9.-]+/g, "")
+      )
+    }
+    const potentialRevString = toDollarString(potentialNewBusiness)
+
+    //populating dates and adding rev in projects
+    let projectRevenue = 0
     for (let i = 0; i < projects.length; i++) {
       // change date to readable
       projects[i].startDateString = projects[i].startDate.toDateString()
       projects[i].goalDateString = projects[i].goalDate.toDateString()
+
+      //adding project revenue
+      projectRevenue += Number(
+        projects[i].dollarValue.replace(/[^0-9.-]+/g, "")
+      )
     }
+    const projectRevString = toDollarString(projectRevenue)
 
     return res.render("app/singleCustomer", {
       customer,
       projects,
       opps,
+      potentialRevString,
+      projectRevString,
     })
   } catch (error) {
     console.log("Error loading customer page", error.message)
@@ -159,6 +187,9 @@ exports.opportunities = async (req, res, next) => {
       belongsTo: req.session.currentOrg._id,
     })
 
+    let potentialRev = 0
+    let numberOfOpps = opps.length
+
     for (let i = 0; i < opps.length; i++) {
       // get name of customer
       const customer = await Customer.findById(opps[i].forCustomer)
@@ -167,9 +198,14 @@ exports.opportunities = async (req, res, next) => {
       // change date to readable
       opps[i].openedDateString = opps[i].openedDate.toDateString()
       opps[i].closeDateString = opps[i].closeDate.toDateString()
+
+      // add value to total potential revenue
+      potentialRev += Number(opps[i].dollarValue.replace(/[^0-9.-]+/g, ""))
     }
 
-    return res.render("app/opportunities", { opps })
+    potentialRev = toDollarString(potentialRev)
+
+    return res.render("app/opportunities", { opps, potentialRev, numberOfOpps })
   } catch (error) {
     console.log("Error loading opportunities", error.message)
   }
@@ -199,9 +235,13 @@ exports.customers = async (req, res, next) => {
   try {
     const customers = await Customer.find({
       belongsTo: req.session.currentOrg._id,
-    })
+    }).populate("projects")
 
-    console.log(customers)
+    for (let i = 0; i < customers.length; i++) {
+      customers[i].projectRevString = getCustomerRevString(
+        customers[i].projects
+      )
+    }
 
     return res.render("app/customers", { customers })
   } catch (error) {
@@ -234,7 +274,6 @@ exports.submitEditMyProfile = async (req, res, next) => {
     console.log(error.message)
   }
 }
-
 exports.submitCreateOrg = async (req, res, next) => {
   const { name } = req.body
 
@@ -329,7 +368,6 @@ exports.submitCreateProject = async (req, res, next) => {
     console.log("Error while creating project", error)
   }
 }
-
 exports.submitEditProject = async (req, res, next) => {
   const { title, dollarValue, currentStage } = req.body
   const { projectId } = req.params
