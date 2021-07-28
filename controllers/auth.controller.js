@@ -103,10 +103,11 @@ exports.submitSignup = async (req, res, next) => {
     //redirecting to dashboard
     res.redirect("/app")
   } catch (error) {
+    console.log(error)
     if (error instanceof mongoose.Error.ValidationError) {
-      res.status(500).render("auth/login", { msg: error.message })
+      res.status(500).render("auth/signup", { msg: error.message })
     } else if (error.code === 11000) {
-      res.status(500).render("auth/login", {
+      res.status(500).render("auth/signup", {
         msg: "Email or username are already in use. ",
       })
     } else {

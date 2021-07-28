@@ -19,13 +19,12 @@
                 <a href="/signup" class="w-75 link-text">Don't have an account? Sign Up</a>
               </div>
             </form>
+            {{#if msg}}
+              <p class="error">{{msg}}</p>
+            {{/if}}
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  {{#if msg}}
-    <p class="error">{{msg}}</p>
-  {{/if}}
 </div>

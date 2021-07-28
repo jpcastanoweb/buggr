@@ -30,7 +30,9 @@
                 <a href="/login" class="w-75 link-text">Already have an account? Sign In</a>
               </div>
             </form>
-            
+            {{#if msg}}
+              <p class="error">{{msg}}</p>
+            {{/if}}
           </div>
         </div>
       </div>
