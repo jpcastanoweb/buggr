@@ -1,4 +1,23 @@
-<div class="container-fluid d-flex justify-content-center border-bottom org-selector-container">
+<div class="d-flex h-100 ">
+    {{> appheader}}
+    <div class="app-content">
+        <h3>Opportunities:</h3>
+        {{#each opps}}
+            <p>{{this.title}}</p>
+        {{/each}}
+
+        <a href="/app/createopp">+ Opportunity</a>
+
+        <h3>Projects:</h3>
+        {{#each projects}}
+            <p>{{this.title}}</p>
+        {{/each}}
+
+        <a href="/app/createproject">+ Project</a>
+    </div>
+</div>
+
+{{!-- <div class="container-fluid d-flex justify-content-center border-bottom org-selector-container">
     <div class="d-flex justify-content-between align-items-center org-selector">
         <span class="me-3 fs-3">Organization: </span>
         <select class="form-select" aria-label="Default select example">
@@ -9,19 +28,4 @@
         </select>
     </div>
 </div>
-<h1>{{currentOrg.name}}</h1>
-
-
-<h3>Opportunities:</h3>
-{{#each opps}}
-    <p>{{this.title}}</p>
-{{/each}}
-
-<a href="/app/createopp">+ Opportunity</a>
-
-<h3>Projects:</h3>
-{{#each projects}}
-    <p>{{this.title}}</p>
-{{/each}}
-
-<a href="/app/createproject">+ Project</a>
+<h1>{{currentOrg.name}}</h1> --}}

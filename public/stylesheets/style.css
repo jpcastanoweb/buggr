@@ -6,18 +6,12 @@
   Dark Purple: 2D320
 */
 
+/* My code */
 html {
-  margin: 0;
-  font-family: 14px 'Work Sans', sans-serif;
+  height: 100%;
 }
-
 body {
-  padding-top: 76px;
-  /* background-color: #645e9d !important; */
-}
-
-a {
-  color: #00b7ff;
+  height: 100%;
 }
 
 h1 {
@@ -37,6 +31,16 @@ h1 {
 .nav-links-edit a {
   text-decoration: none;
   color: #392B58;
+}
+
+.sidebar-nav {
+  width: 200px !important;
+  height: 100%;
+  background-color: #7DCCAB;
+}
+
+.home-page{
+  padding-top: 80px;
 }
 
 .sign-in-btn {
@@ -61,6 +65,7 @@ h1 {
 }
 
 .org-selector-container {
-  height: 70px;
-  background-color: #7DCCAB;
+  height: 60px;
+  /* background-color: #7DCCAB; */
+  color: #392B58;
 }
