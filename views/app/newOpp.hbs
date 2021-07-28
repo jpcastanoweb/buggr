@@ -1,42 +1,48 @@
-<h1>Create Opportunity</h1>
-
-<div id="form">
-  <form action="/app/createopp" method="POST">
- 
-    <label> Title 
-      <input type="text" name="title" placeholder="Project Title" />
-      *
-    </label>
-    <br />
-    <label> Open Date:
-      <input type="date" name="openDate" placeholder="" />
-      *
-    </label>
-    <br />
-    <label> Close Date:
-      <input type="date" name="closeDate" placeholder="" />
-      *
-    </label>
-    <br />
-    <label> Dollar Value:
-      <input type="text" name="dollarValue" placeholder="0" />
-      *
-    </label>
-    <br />
-    <label> Contact Full Name: 
-      <input type="text" name="contactFullName" placeholder="Joe" />
-      *
-    </label>
-    <br />
-    <label> Contact Phone Number: 
-      <input type="text" name="contactPhoneNumber" placeholder="Appleseed" />
-      *
-    </label>
-    <br />
-    <label> Contact Email Address: 
-      <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
-      *
-    </label>
-    <br />
-    <button type="submit">Create Opportunity</button>
-  </form>
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+          <h1>Create Opportunity</h1>
+          <div id="form">
+            <form action="/app/createopp" method="POST">
+          
+              <label> Title 
+                <input type="text" name="title" placeholder="Project Title" />
+                *
+              </label>
+              <br />
+              <label> Opened Date:
+                <input type="date" name="openedDate" placeholder="" />
+                *
+              </label>
+              <br />
+              <label> Close Date:
+                <input type="date" name="closeDate" placeholder="" />
+                *
+              </label>
+              <br />
+              <label> Dollar Value:
+                <input type="text" name="dollarValue" placeholder="0" />
+                *
+              </label>
+              <br />
+              <label> Contact Full Name: 
+                <input type="text" name="contactFullName" placeholder="Joe" />
+                *
+              </label>
+              <br />
+              <label> Contact Phone Number: 
+                <input type="text" name="contactPhoneNumber" placeholder="Appleseed" />
+                *
+              </label>
+              <br />
+              <label> Contact Email Address: 
+                <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
+                *
+              </label>
+              <br />
+              <button type="submit">Create Opportunity</button>
+            </form>
+        </div>
+    </div>
+</div>

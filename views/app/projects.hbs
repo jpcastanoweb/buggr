@@ -4,7 +4,9 @@
         <div class="app-content px-5 pt-4">
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Projects</h2>
-                <button class="new-btn">+ New Project</button>
+                <a href="/app/createProject">
+                    <button class="new-btn">+ New Project</button>
+                </a>
             </div>
             <hr>
             <h5>All Projects</h5>
@@ -22,13 +24,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each opps}}
+                        {{#each projects}}
                             <tr>
                                 <td>{{title}}</td>
                                 <td>{{currentStage}}</td>
                                 <td>{{contactFullName}}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{startDate}}</td>
+                                <td>{{goalDate}}</td>
                                 <td><a href="/app/project/{{_id}}/edit">Edit</a></td>
                                 <td><a href="">Delete</a></td>
                             </tr>

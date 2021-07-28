@@ -1,11 +1,17 @@
-<h1>My Profile</h1>
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+            <h1>My Profile</h1>
+            {{#with currentUser}}
+            <p>Username: {{username}}</p>
+            <p>Email: {{email}}</p>
+            <p>First Name: {{firstName}}</p>
+            <p>Last Name: {{lastName}}</p>
+            <p>Role: {{role}}</p>
+            {{/with}}
 
-{{#with currentUser}}
-<p>Username: {{username}}</p>
-<p>Email: {{email}}</p>
-<p>First Name: {{firstName}}</p>
-<p>Last Name: {{lastName}}</p>
-<p>Role: {{role}}</p>
-{{/with}}
-
-<a href="./myprofile/edit">Edit Info</a>
+            <a href="./myprofile/edit">Edit Info</a>
+        </div>
+    </div>
+</div>

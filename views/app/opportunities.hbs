@@ -4,7 +4,9 @@
         <div class="app-content px-5 pt-4">
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Opportunities</h2>
-                <button class="new-btn">+ New Opportunity</button>
+                <a href="/app/createopp">
+                    <button class="new-btn">+ New Opportunity</button>
+                </a>
             </div>
             
             <hr>
@@ -35,8 +37,8 @@
                                 <td>{{currentStage}}</td>
                                 <td>{{dollarValue}}</td>
                                 <td>{{contactFullName}}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{openedDate}}</td>
+                                <td>{{closeDate}}</td>
                                 <td><a href="/app/opp/{{_id}}/edit">Edit</a></td>
                                 <td><a href="">Delete</a></td>
                             </tr>

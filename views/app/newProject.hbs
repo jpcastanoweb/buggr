@@ -1,42 +1,47 @@
-<h1>Create Project</h1>
-
-<div id="form">
-  <form action="/app/createproject" method="POST">
- 
-    <label> Title 
-      <input type="text" name="title" placeholder="Project Title" />
-      *
-    </label>
-    <br />
-    <label> Start Date:
-      <input type="date" name="startDate" placeholder="" />
-      *
-    </label>
-    <br />
-    <label> Goal Date:
-      <input type="date" name="goalDate" placeholder="" />
-      *
-    </label>
-    <br />
-    <label> Dollar Value:
-      <input type="text" name="dollarValue" placeholder="0" />
-      *
-    </label>
-    <br />
-    <label> Contact Full Name: 
-      <input type="text" name="contactFullName" placeholder="Joe" />
-      *
-    </label>
-    <br />
-    <label> Contact Phone Number: 
-      <input type="text" name="contactPhoneNumber" placeholder="Appleseed" />
-      *
-    </label>
-    <br />
-    <label> Contact Email Address: 
-      <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
-      *
-    </label>
-    <br />
-    <button type="submit">Create Project</button>
-  </form>
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+          <h1>Create Project</h1>
+          <div id="form">
+            <form action="/app/createproject" method="POST">
+          
+              <label> Title 
+                <input type="text" name="title" placeholder="Project Title" />
+                *
+              </label>
+              <br />
+              <label> Start Date:
+                <input type="date" name="startDate" placeholder="" />
+                *
+              </label>
+              <br />
+              <label> Goal Date:
+                <input type="date" name="goalDate" placeholder="" />
+                *
+              </label>
+              <br />
+              <label> Dollar Value:
+                <input type="text" name="dollarValue" placeholder="0" />
+                *
+              </label>
+              <br />
+              <label> Contact Full Name: 
+                <input type="text" name="contactFullName" placeholder="Joe" />
+                *
+              </label>
+              <br />
+              <label> Contact Phone Number: 
+                <input type="text" name="contactPhoneNumber" placeholder="Appleseed" />
+                *
+              </label>
+              <br />
+              <label> Contact Email Address: 
+                <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
+                *
+              </label>
+              <br />
+              <button type="submit">Create Project</button>
+            </form>
+    </div>
+</div>

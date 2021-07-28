@@ -74,21 +74,25 @@ exports.editOpp = async (req, res, next) => {
 }
 exports.opportunities = async (req, res, next) => {
   try {
-    const oppIds = await Opportunity.find({
+    let opps = await Opportunity.find({
       belongsTo: req.session.currentOrg._id,
     })
 
-    return res.render("app/opportunities", {
-      opps: oppIds,
-    })
+    return res.render("app/opportunities", { opps })
   } catch (error) {
     console.log("Error loading opportunities", error)
   }
-
-  // return res.render("app/opportunities")
 }
 exports.projects = async (req, res, next) => {
-  return res.render("app/projects")
+  try {
+    const projects = await Project.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    return res.render("app/projects", { projects })
+  } catch (error) {
+    console.log("Error loading projects", error)
+  }
 }
 exports.customers = async (req, res, next) => {
   return res.render("app/customers")
@@ -186,7 +190,7 @@ exports.submitCreateProject = async (req, res, next) => {
     req.session.currentOrg = currentOrg
 
     //redirect to app dashboard
-    return res.redirect("/app")
+    return res.redirect("/app/projects")
   } catch (error) {
     console.log("Error while creating project", error)
   }
@@ -230,7 +234,7 @@ exports.submitCreateOpp = async (req, res, next) => {
     req.session.currentOrg = currentOrg
 
     //redirect to app dashboard
-    return res.redirect("/app")
+    return res.redirect("/app/opportunities")
   } catch (error) {
     console.log("Error while creating project", error)
   }
