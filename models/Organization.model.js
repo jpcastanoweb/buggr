@@ -11,6 +11,7 @@ const organizationSchema = new Schema(
     admin: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      required: [true, "Admin is required"],
     },
     projects: {
       type: [{ type: Schema.Types.ObjectId, ref: "Project" }],
@@ -22,6 +23,10 @@ const organizationSchema = new Schema(
     },
     users: {
       type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+      default: [],
+    },
+    customers: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Customer" }],
       default: [],
     },
   },

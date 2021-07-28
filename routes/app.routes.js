@@ -3,7 +3,7 @@ const appController = require("./../controllers/app.controller")
 const { isLoggedIn, isLoggedOut } = require("./../middleware/route-guard")
 const { inApp, outApp } = require("./../middleware/header-setter")
 
-/* Dashboard */
+/* App Default -> Opportunities */
 router.get("/", isLoggedIn, inApp, appController.opportunities)
 
 /* Profile */
@@ -23,9 +23,9 @@ router.post("/org/:orgId/delete", isLoggedIn, appController.submitDeleteOrg)
 /* Project */
 router.get("/projects", isLoggedIn, inApp, appController.projects)
 router.get("/createproject", isLoggedIn, inApp, appController.createProject)
-router.get("/project/:projectId", isLoggedIn, inApp, appController.project)
+router.get("/projects/:projectId", isLoggedIn, inApp, appController.project)
 router.get(
-  "/project/:projectId/edit",
+  "/projects/:projectId/edit",
   isLoggedIn,
   inApp,
   appController.editProject
@@ -33,12 +33,12 @@ router.get(
 
 router.post("/createproject", isLoggedIn, appController.submitCreateProject)
 router.post(
-  "/project/:projectId/edit",
+  "/projects/:projectId/edit",
   isLoggedIn,
   appController.submitEditProject
 )
 router.post(
-  "/project/:projectId/delete",
+  "/projects/:projectId/delete",
   isLoggedIn,
   appController.submitDeleteProject
 )
@@ -46,13 +46,40 @@ router.post(
 /* Opportunity */
 router.get("/opportunities", isLoggedIn, inApp, appController.opportunities)
 router.get("/createopp", isLoggedIn, inApp, appController.createOpp)
-router.get("/opp/:oppId", isLoggedIn, inApp, appController.opp)
-router.get("/opp/:oppId/edit", isLoggedIn, inApp, appController.opp)
+router.get("/opps/:oppId", isLoggedIn, inApp, appController.opp)
+router.get("/opps/:oppId/edit", isLoggedIn, inApp, appController.editOpp)
 
 router.post("/createopp", isLoggedIn, inApp, appController.submitCreateOpp)
-router.post("/opp/:oppId/edit", isLoggedIn, inApp, appController.submitEditOpp)
-router.post("/opp/:oppId/opp", isLoggedIn, inApp, appController.submitDeleteOpp)
+router.post("/opps/:oppId/edit", isLoggedIn, inApp, appController.submitEditOpp)
+router.post(
+  "/opps/:oppId/delete",
+  isLoggedIn,
+  inApp,
+  appController.submitDeleteOpp
+)
 
 /* Customers */
 router.get("/customers", isLoggedIn, inApp, appController.customers)
+router.get("/newCustomer", isLoggedIn, inApp, appController.newCustomer)
+router.get("/customers/:customerId", isLoggedIn, inApp, appController.customer)
+router.get(
+  "customers/:customerId/edit",
+  isLoggedIn,
+  inApp,
+  appController.editCustomer
+)
+
+router.post("/newCustomer", isLoggedIn, inApp, appController.submitNewCustomer)
+router.post(
+  "/customers/:customerId/edit",
+  isLoggedIn,
+  inApp,
+  appController.submitEditCustomer
+)
+router.post(
+  "/customers/:customerId/delete",
+  isLoggedIn,
+  inApp,
+  appController.submitDeleteCustomer
+)
 module.exports = router

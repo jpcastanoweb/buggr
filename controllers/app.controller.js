@@ -2,6 +2,7 @@ const Organization = require("./../models/Organization.model")
 const Project = require("./../models/Project.model")
 const Opportunity = require("./../models/Opportunity.model")
 const User = require("./../models/User.model")
+const Customer = require("./../models/Customer.model")
 //TODO Add Customers
 
 /* GET requests */
@@ -96,6 +97,15 @@ exports.projects = async (req, res, next) => {
 }
 exports.customers = async (req, res, next) => {
   return res.render("app/customers")
+}
+exports.newCustomer = async (req, res, next) => {
+  return res.render("app/newCustomer")
+}
+exports.customer = async (req, res, next) => {
+  return res.render("app/singleCustomer")
+}
+exports.editCustomer = async (req, res, next) => {
+  return res.render("app/editCustoemr")
 }
 
 /* POST requests */
@@ -241,3 +251,6 @@ exports.submitCreateOpp = async (req, res, next) => {
 }
 exports.submitEditOpp = async (req, res, next) => {}
 exports.submitDeleteOpp = async (req, res, next) => {}
+exports.submitNewCustomer = async (req, res, next) => {}
+exports.submitEditCustomer = async (req, res, next) => {}
+exports.submitDeleteCustomer = async (req, res, next) => {}

@@ -11,6 +11,12 @@ const opportunitySchema = new Schema(
     belongsTo: {
       type: Schema.Types.ObjectId,
       ref: "Organization",
+      required: [true, "belongsTo (org) is required."],
+    },
+    forCustomer: {
+      type: Schema.Types.ObjectId,
+      ref: "Customer",
+      required: [true, "forCustomer (customer) is required."],
     },
     openedDate: Date,
     closeDate: Date,
@@ -20,23 +26,6 @@ const opportunitySchema = new Schema(
     dollarValue: {
       type: Number,
       default: 0,
-    },
-    contactFullName: {
-      type: String,
-      default: "",
-      required: [true, "Please insert the project's contact's full name."],
-    },
-    contactPhoneNumber: {
-      type: String,
-      default: "",
-      required: [true, "Please insert the project's contact's phone number."],
-    },
-    contactEmailAddress: {
-      type: String,
-      required: [true, "Please insert the project's contact's email address."],
-      lowercase: true,
-      trim: true,
-      match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
     },
     posts: {
       type: [{ type: Schema.Types.ObjectId, ref: "Post" }],
