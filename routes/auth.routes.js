@@ -4,7 +4,7 @@ const { isLoggedIn, isLoggedOut } = require("./../middleware/route-guard")
 const { inApp, outApp } = require("./../middleware/header-setter")
 
 /* Sign Up */
-// router.get("/signup", authController.signup)
+router.get("/signup", authController.signup)
 router.post("/signup", isLoggedOut, authController.submitSignup)
 
 /* Log In */

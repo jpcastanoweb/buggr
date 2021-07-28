@@ -71,6 +71,12 @@ exports.opp = async (req, res, next) => {
 exports.editOpp = async (req, res, next) => {
   return res.render("app/editOpp")
 }
+exports.opportunities = async (req, res, next) => {
+  return res.render("app/opportunities")
+}
+exports.projects = async (req, res, next) => {
+  return res.render("app/projects")
+}
 
 /* POST requests */
 exports.submitEditMyProfile = async (req, res, next) => {

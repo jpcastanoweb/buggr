@@ -3,9 +3,9 @@ const Organization = require("./../models/Organization.model")
 const mongoose = require("mongoose")
 const bcryptjs = require("bcryptjs")
 
-// exports.signup = async (req, res, next) => {
-//   res.render("auth/signup")
-// }
+exports.signup = async (req, res, next) => {
+  res.render("auth/signup")
+}
 exports.submitSignup = async (req, res, next) => {
   const {
     username,

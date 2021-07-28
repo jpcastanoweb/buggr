@@ -1,27 +1,28 @@
 <nav class="d-flex flex-column flex-shrink-0 p-3 sidebar-nav align-content-start justify-content-between shadow-box me-2">
     <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none" href="#">
         <img src="/images/main_logo_notext.png" alt="" width="50" class="d-inline-block align-text-top me-1">
-        <span class="brand-title">Buggr</span>
+        <span class="brand-title-white">Buggr</span>
     </a>
-    <hr />
+    <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a href="/app" class="nav-link active">Dashboard</a>
+        {{!-- <li class="nav-item">
+            <a href="/app" class="nav-link text-decoration-none text-white">Dashboard</a>
         </li>
+        <hr> --}}
         <li class="nav-item">
-            <a href="/app/opportunities" class="nav-link">Opportunities</a>
+            <a href="/app/opportunities" class="nav-link text-decoration-none text-white">Opportunities</a>
         </li>
+        <hr>
         <li class="nav-item">
-            <a href="/app/projects" class="nav-link">Projects</a>
+            <a href="/app/projects" class="nav-link text-decoration-none text-white">Projects</a>
         </li>
     </ul>
-    <hr />
+    <hr>
     <div class="dropdown">
-        <a href="" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <a href="" class="d-flex align-items-center link-dark text-decoration-none text-white dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             {{currentUser.firstName}} {{currentUser.lastName}}
         </a>
         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/app">Dashboard</a></li>
             <li><a class="dropdown-item" href="/app/myprofile">My Profile</a></li>
             <li><a class="dropdown-item" href="/app/myprofile/edit">Edit Profile</a></li>
             <li><a class="dropdown-item" href="/">Homepage</a></li>

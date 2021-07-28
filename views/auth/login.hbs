@@ -1,62 +1,28 @@
-<div class="home-page">
-  <div id="form">
-    <h2>Log In</h2>
-    <form action="/login" method="POST">
-      <label> Email:
-        <input type="email" name="email" placeholder="example@ironhack.com" />
-        *
-      </label>
-      <br />
-      <label> Password:
-        <input type="password" name="password" placeholder="********" id="signup-password" />
-        *
-      </label>
-      
-      <button type="submit">Log In</button>
-    </form>
-  </div>
-  <br/>
-  <br/>
-  <div id="form">
-    <h2>Signup</h2>
-    <form action="/signup" method="POST">
-  
-      <label> Username 
-        <input type="text" name="username" placeholder="myusername" />
-        *
-      </label>
-      <br />
-      <label> Email:
-        <input type="email" name="email" placeholder="example@ironhack.com" />
-        *
-      </label>
-      <br />
-      <label> Password:
-        <input type="password" name="password" placeholder="********" id="signup-password" />
-        *
-      </label>
-      <br />
-      <label> Confirm Password:
-        <input type="password" name="confirmPassword" placeholder="********" id="signup-confirm-password" />
-        *
-      </label>
-      <br />
-      <label> First Name: 
-        <input type="text" name="firstName" placeholder="Joe" />
-        *
-      </label>
-      <br />
-      <label> Last Name: 
-        <input type="text" name="lastName" placeholder="Appleseed" />
-        *
-      </label>
-      <br />
-      <label> Role: 
-        <input type="text" name="role" placeholder="Project Manager" />
-      </label>
-      <br />
-      <button type="submit">Create account</button>
-    </form>
+<div class="h-100">
+  <div class="container m-0 w-100 h-100">
+    <div class="row h-100">
+      <div class="col-6 p-0">
+        {{> authLogoFiller}}
+      </div>
+      <div class="col">
+        <div id="form" class="w-100 h-100 d-flex justify-content-center align-items-center">
+          <div class="auth-form w-75">
+            <h2>Log In</h2>
+            <br />
+            <form action="/login" method="POST">
+              <input type="email" name="email" placeholder="Email" />
+              <br /><br />
+              <input type="password" name="password" placeholder="Password" id="signup-password" />
+              <br /><br />
+              <button type="submit" class="sign-up-btn">Log In</button>
+              <div class="w-75 d-flex justify-content-center mt-2">
+                <a href="/signup" class="w-75 link-text">Don't have an account? Sign Up</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   {{#if msg}}

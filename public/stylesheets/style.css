@@ -22,10 +22,32 @@ h1 {
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 }
 
-.brand-title {
+.brand-title-purple {
   font-family: 'Fredoka One', cursive;
   font-size: 2rem;
   color: #392B58;
+}
+
+.brand-title-white {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  color: white;
+}
+
+.auth-form input {
+  width: 75%;
+}
+
+.sign-up-btn {
+  width: 75%;
+  background-color: #392B58 !important; 
+  border-color: #392B58 !important;
+  color: white;
+}
+
+.link-text {
+  font-size: 9px !important;
+  text-align: center;
 }
 
 .nav-links-edit a {
@@ -36,7 +58,7 @@ h1 {
 .sidebar-nav {
   width: 200px !important;
   height: 100%;
-  background-color: #7DCCAB;
+  background-color: #5c4d7c;
 }
 
 .home-page{
@@ -68,4 +90,9 @@ h1 {
   height: 60px;
   /* background-color: #7DCCAB; */
   color: #392B58;
+}
+
+.logo-filler {
+  background-color: #5c4d7c;
+  color: #D8C39B !important;
 }

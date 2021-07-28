@@ -21,6 +21,7 @@ router.post("/org/:orgId/edit", isLoggedIn, appController.submitEditOrg)
 router.post("/org/:orgId/delete", isLoggedIn, appController.submitDeleteOrg)
 
 /* Project */
+router.get("/projects", isLoggedIn, inApp, appController.projects)
 router.get("/createproject", isLoggedIn, inApp, appController.createProject)
 router.get("/project/:projectId", isLoggedIn, inApp, appController.project)
 router.get(
@@ -43,6 +44,7 @@ router.post(
 )
 
 /* Opportunity */
+router.get("/opportunities", isLoggedIn, inApp, appController.opportunities)
 router.get("/createopp", isLoggedIn, inApp, appController.createOpp)
 router.get("/opp/:oppId", isLoggedIn, inApp, appController.opp)
 router.get("/opp/:oppId/edit", isLoggedIn, inApp, appController.opp)
