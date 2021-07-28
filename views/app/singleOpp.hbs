@@ -4,7 +4,7 @@
         <div class="app-content px-5 pt-4">
             <div class="d-flex container-lg justify-content-between px-0">
                 <h2>{{title}}</h2>
-                <button class="convert-btn">Convert to Opportunity</button>
+                <button class="convert-btn">Convert to Project</button>
             </div>
             <span class="me-3"><a class="fs-6" href="/app/opps/edit/{{_id}}">Edit</a></span>
             <span class="me-3"><a class="fs-6" href="">Delete</a></span>
@@ -13,23 +13,23 @@
                 <div class="row">
                     <div class="col d-flow flex-column">
                         <p class="mb-1 fs-7">Customer</p>
-                        <p class="fs-5">$100,000</p>
+                        <p class="fs-5">{{forCustomer.name}}</p>
                     </div>
                     <div class="col d-flow flex-column">
                         <p class="mb-1 fs-7">Value</p>
-                        <p class="fs-5">$200,000</p>
+                        <p class="fs-5">{{dollarValue}}</p>
                     </div>
                     <div class="col d-flow flex-column">
-                        <p class="mb-1 fs-7">Current Status</p>
-                        <p class="fs-5">03/25/2020</p>
+                        <p class="mb-1 fs-7">Current Stage</p>
+                        <p class="fs-5">{{currentStage}}</p>
                     </div>
                     <div class="col d-flow flex-column">
-                        <p class="mb-1 fs-7">Date Started</p>
-                        <p class="fs-5">03/25/2020</p>
+                        <p class="mb-1 fs-7">Opened Date</p>
+                        <p class="fs-5">03/25/2020</p>{{!-- TODO: Change to actual values --}}
                     </div>
                     <div class="col d-flow flex-column">
-                        <p class="mb-1 fs-7">Date Goal</p>
-                        <p class="fs-5">03/25/2020</p>
+                        <p class="mb-1 fs-7">Close Date</p>
+                        <p class="fs-5">03/25/2020</p>{{!-- TODO: Change to actual values --}}
                     </div>
                 </div>
                 <div class="row">

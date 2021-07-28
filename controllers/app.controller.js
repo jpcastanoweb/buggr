@@ -4,43 +4,18 @@ const Project = require("./../models/Project.model")
 const Opportunity = require("./../models/Opportunity.model")
 const User = require("./../models/User.model")
 const Customer = require("./../models/Customer.model")
-//TODO Add Customers
+
+//Currency formatter.
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+
+  // These options are needed to round to whole numbers if that's what you want.
+  minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+})
 
 /* GET requests */
-// exports.dashboard = async (req, res, next) => {
-//   try {
-//     const orgs = []
-
-//     for (let i = 0; i < req.session.currentUser.organizations.length; i++) {
-//       const org = await Organization.findById(
-//         req.session.currentUser.organizations[i]
-//       )
-
-//       if (req.session.currentOrg._id.toString() !== org._id.toString()) {
-//         orgs.push({
-//           name: org.name,
-//           id: org._id,
-//         })
-//       }
-//     }
-
-//     const oppIds = await Opportunity.find({
-//       belongsTo: req.session.currentOrg._id,
-//     })
-
-//     const projectIds = await Project.find({
-//       belongsTo: req.session.currentOrg._id,
-//     })
-
-//     return res.render("app/dashboard", {
-//       projects: projectIds,
-//       opps: oppIds,
-//       userOrgs: orgs,
-//     })
-//   } catch (error) {
-//     console.log("Error loading dashboard", error)
-//   }
-// }
 exports.myprofile = async (req, res, next) => {
   return res.render("app/myprofile")
 }
@@ -72,8 +47,9 @@ exports.project = async (req, res, next) => {
   const { projectId } = req.params
 
   try {
-    const project = await Project.findById(projectId)
-
+    const project = await Project.findById(projectId).populate("forCustomer")
+    // project.valueString = formatter(project.dollarValue)
+    // console.log()
     return res.render("app/singleProject", project)
   } catch (error) {
     console.log("Error loading specific project", error.message)
@@ -106,7 +82,6 @@ exports.opp = async (req, res, next) => {
 
   try {
     let opp = await Opportunity.findById(oppId).populate("forCustomer")
-    console.log("Populated opp", opp)
 
     return res.render("app/singleOpp", opp)
   } catch (error) {

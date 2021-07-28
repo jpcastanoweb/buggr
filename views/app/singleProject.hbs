@@ -5,7 +5,44 @@
             <h2>{{title}}</h2>
             <span><a class="fs-6" href="/app/projects/edit/{{_id}}">Edit Project</a></span>
             <hr>
-            
+            <div class="container-lg px-0">
+                <div class="row">
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Customer</p>
+                        <p class="fs-5">{{forCustomer.name}}</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Value</p>
+                        <p class="fs-5">{{dollarValue}}</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Current Stage</p>
+                        <p class="fs-5">{{currentStage}}</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Start Date</p>{{!-- TODO: Change to actual values --}}
+                        <p class="fs-5">03/25/2020</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Goal Date</p>{{!-- TODO: Change to actual values --}}
+                        <p class="fs-5">03/25/2020</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Contact Full Name</p>
+                        <p class="fs-5">{{forCustomer.contactInfo.firstName}} {{forCustomer.contactInfo.lastName}}</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Contact Email Address</p>
+                        <p class="fs-5">{{forCustomer.contactInfo.emailAddress}}</p>
+                    </div>
+                    <div class="col d-flow flex-column">
+                        <p class="mb-1 fs-7">Contact Phone Number</p>
+                        <p class="fs-5">{{forCustomer.contactInfo.phoneNumber}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
