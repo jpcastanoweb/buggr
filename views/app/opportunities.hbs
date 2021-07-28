@@ -33,14 +33,13 @@
                     </thead>
                     <tbody>
                         {{#each opps}}
-
                             <tr>
                                 <td>{{title}}</td>
                                 <td>{{currentStage}}</td>
                                 <td>{{dollarValue}}</td>
-                                <td>{{contactFullName}}</td>
-                                <td>{{openedDate}}</td>
-                                <td>{{closeDate}}</td>
+                                <td>{{customerName}}</td>
+                                <td>{{openedDateString}}</td>
+                                <td>{{closeDateString}}</td>
                                 <td><a href="/app/opps/{{_id}}">View</a> </td>
                                 <td><a href="/app/opps/edit/{{_id}}">Edit</a></td>
                                 <td><a href="">Delete</a></td>

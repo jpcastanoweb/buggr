@@ -14,38 +14,24 @@
               <label> Customer 
                 <select name="customerId" id="">
                   {{#each customers}}
-                    <option value={{_id}}>{{name}}</option>
+                    <option value="{{_id}}">{{name}}</option>
                   {{/each}}
                 </select>
+                *
               </label>
               <br />
-              <label> Start Date:
+              <label> Start Date
                 <input type="date" name="startDate" placeholder="" />
                 *
               </label>
               <br />
-              <label> Goal Date:
+              <label> Goal Date
                 <input type="date" name="goalDate" placeholder="" />
                 *
               </label>
               <br />
-              <label> Dollar Value:
+              <label> Dollar Value
                 <input type="text" name="dollarValue" placeholder="0" />
-                *
-              </label>
-              <br />
-              <label> Contact Full Name: 
-                <input type="text" name="contactFullName" placeholder="Joe" />
-                *
-              </label>
-              <br />
-              <label> Contact Phone Number: 
-                <input type="text" name="contactPhoneNumber" placeholder="Appleseed" />
-                *
-              </label>
-              <br />
-              <label> Contact Email Address: 
-                <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
                 *
               </label>
               <br />

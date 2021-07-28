@@ -1,3 +1,4 @@
+const mongoose = require("mongoose")
 const Organization = require("./../models/Organization.model")
 const Project = require("./../models/Project.model")
 const Opportunity = require("./../models/Opportunity.model")
@@ -90,7 +91,15 @@ exports.editProject = async (req, res, next) => {
   }
 }
 exports.createOpp = async (req, res, next) => {
-  return res.render("app/newOpp")
+  try {
+    const customers = await Customer.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    return res.render("app/newOpp", { customers })
+  } catch (error) {
+    console.log("Error loading create org form", error.message)
+  }
 }
 exports.opp = async (req, res, next) => {
   const { oppId } = req.params
@@ -154,6 +163,16 @@ exports.opportunities = async (req, res, next) => {
       belongsTo: req.session.currentOrg._id,
     })
 
+    for (let i = 0; i < opps.length; i++) {
+      // get name of customer
+      const customer = await Customer.findById(opps[i].forCustomer)
+      opps[i].customerName = customer.name ? customer.name : ""
+
+      // change date to readable
+      opps[i].openedDateString = opps[i].openedDate.toDateString()
+      opps[i].closeDateString = opps[i].closeDate.toDateString()
+    }
+
     return res.render("app/opportunities", { opps })
   } catch (error) {
     console.log("Error loading opportunities", error.message)
@@ -164,6 +183,16 @@ exports.projects = async (req, res, next) => {
     const projects = await Project.find({
       belongsTo: req.session.currentOrg._id,
     })
+
+    for (let i = 0; i < projects.length; i++) {
+      // get name of customer
+      const customer = await Customer.findById(projects[i].forCustomer)
+      projects[i].customerName = customer.name
+
+      // change date to readable
+      projects[i].startDateString = projects[i].startDate.toDateString()
+      projects[i].goalDateString = projects[i].goalDate.toDateString()
+    }
 
     return res.render("app/projects", { projects })
   } catch (error) {
@@ -264,11 +293,14 @@ exports.submitCreateProject = async (req, res, next) => {
   //create new project
   const { title, customerId, startDate, goalDate, dollarValue } = req.body
 
+  const customerIdObj = mongoose.Types.ObjectId(customerId)
+
   try {
+    // create project
     const newProject = await Project.create({
       title,
       belongsTo: req.session.currentOrg._id,
-      forCustomer: customerId,
+      forCustomer: customerIdObj,
       startDate,
       goalDate,
       wasOpp: false,
@@ -278,6 +310,11 @@ exports.submitCreateProject = async (req, res, next) => {
       dollarValue,
       posts: [],
       documents: [],
+    })
+
+    //add project to customer's projects
+    await Customer.findByIdAndUpdate(customerIdObj, {
+      $push: { projects: newProject._id },
     })
 
     //adding project to current org
@@ -296,6 +333,7 @@ exports.submitCreateProject = async (req, res, next) => {
     console.log("Error while creating project", error)
   }
 }
+
 exports.submitEditProject = async (req, res, next) => {
   const { title, dollarValue, currentStage } = req.body
   const { projectId } = req.params
@@ -315,31 +353,30 @@ exports.submitEditProject = async (req, res, next) => {
 exports.submitDeleteProject = async (req, res, next) => {}
 exports.submitCreateOpp = async (req, res, next) => {
   //create new project
-  const {
-    title,
-    openedDate,
-    closeDate,
-    dollarValue,
-    contactFullName,
-    contactPhoneNumber,
-    contactEmailAddress,
-  } = req.body
+  const { title, customerId, openedDate, closeDate, dollarValue } = req.body
+
+  const customerIdObj = mongoose.Types.ObjectId(customerId)
 
   try {
+    //create new opp
     const newOpp = await Opportunity.create({
       title,
       belongsTo: req.session.currentOrg._id,
+      forCustomer: customerIdObj,
       openedDate,
       closeDate,
       currentStage: "New",
       dollarValue,
-      contactFullName,
-      contactPhoneNumber,
-      contactEmailAddress,
       posts: [],
       documents: [],
     })
 
+    //add  opp to customer's opps
+    await Customer.findByIdAndUpdate(customerIdObj, {
+      $push: { opportunities: newOpp._id },
+    })
+
+    //add opp to currentOrg's opps
     const currentOrg = await Organization.findByIdAndUpdate(
       req.session.currentOrg,
       { $push: { opportunities: newOpp._id } },
@@ -395,8 +432,6 @@ exports.submitNewCustomer = async (req, res, next) => {
       opportunities: [],
       documents: [],
     })
-
-    console.log(newCustomer)
 
     const currentOrg = await Organization.findByIdAndUpdate(
       req.session.currentOrg._id,

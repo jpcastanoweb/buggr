@@ -11,33 +11,27 @@
                 *
               </label>
               <br />
-              <label> Opened Date:
+              <label> Customer 
+                <select name="customerId" id="">
+                  {{#each customers}}
+                    <option value="{{_id}}">{{name}}</option>
+                  {{/each}}
+                </select>
+                *
+              </label>
+              <br />
+              <label> Opened Date
                 <input type="date" name="openedDate" placeholder="" />
                 *
               </label>
               <br />
-              <label> Close Date:
+              <label> Close Date
                 <input type="date" name="closeDate" placeholder="" />
                 *
               </label>
               <br />
-              <label> Dollar Value:
+              <label> Dollar Value
                 <input type="text" name="dollarValue" placeholder="0" />
-                *
-              </label>
-              <br />
-              <label> Contact Full Name: 
-                <input type="text" name="contactFullName" placeholder="Joe" />
-                *
-              </label>
-              <br />
-              <label> Contact Phone Number: 
-                <input type="text" name="contactPhoneNumber" placeholder="Appleseed" />
-                *
-              </label>
-              <br />
-              <label> Contact Email Address: 
-                <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
                 *
               </label>
               <br />

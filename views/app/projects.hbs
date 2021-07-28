@@ -16,6 +16,7 @@
                         <tr>
                             <th scope="col">Project</th>
                             <th scope="col">Stage</th>
+                            <th scope="col">Value</th>
                             <th scope="col">Customer</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">Goal Date</th>
@@ -29,9 +30,10 @@
                             <tr>
                                 <td>{{title}}</td>
                                 <td>{{currentStage}}</td>
-                                <td>{{contactFullName}}</td>
-                                <td>{{startDate}}</td>
-                                <td>{{goalDate}}</td>
+                                <td>{{dollarValue}}</td>
+                                <td>{{customerName}}</td>
+                                <td>{{startDateString}}</td>
+                                <td>{{goalDateString}}</td>
                                 <td><a href="/app/projects/{{_id}}">View</a></td>
                                 <td><a href="/app/projects/edit/{{_id}}">Edit</a></td>
                                 <td><a href="">Delete</a></td>
