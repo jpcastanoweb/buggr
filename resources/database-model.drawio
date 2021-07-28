@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-28T15:13:45.625Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="256nw2YMIK6iH1IKRe1I" version="14.9.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-28T15:23:11.384Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="a0UKMV45GmojgCbWGSog" version="14.9.2" type="github">
   <diagram id="DzUIId4ll-ulbjkrfadN" name="Page-1">
     <mxGraphModel dx="946" dy="588" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -16,13 +16,13 @@
         <mxCell id="I_L6hPFMJSKXvp4w5YZE-9" value="Organization" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="260" y="40" width="200" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="I_L6hPFMJSKXvp4w5YZE-10" value="id: ObjectId&#xa;name: String *&#xa;admin: #User *&#xa;projects: [#Project] *&#xa;number_of_projects: Number&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="I_L6hPFMJSKXvp4w5YZE-9" vertex="1">
+        <mxCell id="I_L6hPFMJSKXvp4w5YZE-10" value="id: ObjectId&#xa;name: String *&#xa;admin: #User *&#xa;projects: [#Project] *&#xa;opportunities: ObjectIds opps&#xa;customers: ObjectIds customers&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="I_L6hPFMJSKXvp4w5YZE-9" vertex="1">
           <mxGeometry y="30" width="200" height="170" as="geometry" />
         </mxCell>
         <mxCell id="I_L6hPFMJSKXvp4w5YZE-16" value="Project" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="480" y="40" width="200" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="I_L6hPFMJSKXvp4w5YZE-17" value="id: ObjectId&#xa;title: String *&#xa;startDate: Date&#xa;goalDate: Date&#xa;currentStage: String&#xa;dollarValue: Number *&#xa;contactFullName: String *&#xa;contactPhoneNumber: String *&#xa;contactEmailAddress: String *&#xa;posts: [#Post]&#xa;documents: [#Documents]&#xa;&#xa;&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="I_L6hPFMJSKXvp4w5YZE-16" vertex="1">
+        <mxCell id="I_L6hPFMJSKXvp4w5YZE-17" value="id: ObjectId&#xa;title: String *&#xa;belongsTo: ObjectId, org&#xa;forCustomer: ObjectId, customer&#xa;startDate: Date&#xa;goalDate: Date&#xa;currentStage: String&#xa;dollarValue: Number *&#xa;posts: [#Post]&#xa;documents: [#Documents]&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="I_L6hPFMJSKXvp4w5YZE-16" vertex="1">
           <mxGeometry y="30" width="200" height="250" as="geometry" />
         </mxCell>
         <mxCell id="I_L6hPFMJSKXvp4w5YZE-18" value="Post" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
@@ -40,7 +40,7 @@
         <mxCell id="B4_hM_h811P-XngdZyrY-1" value="Opportunity" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="480" y="330" width="200" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="B4_hM_h811P-XngdZyrY-2" value="id: ObjectId&#xa;title: String *&#xa;openedDate: Date&#xa;closeDate: Date&#xa;currentStage: String&#xa;dollarValue: Number *&#xa;contactFullName: String *&#xa;contactPhoneNumber: String *&#xa;contactEmailAddress: String *&#xa;posts: [#Post]&#xa;documents: [#Documents]&#xa;&#xa;&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="B4_hM_h811P-XngdZyrY-1" vertex="1">
+        <mxCell id="B4_hM_h811P-XngdZyrY-2" value="id: ObjectId&#xa;title: String *&#xa;belongsTo: ObjectId, org&#xa;forCustomer: ObjectId, customer&#xa;openedDate: Date&#xa;closeDate: Date&#xa;currentStage: String&#xa;dollarValue: Number *&#xa;posts: [#Post]&#xa;documents: [#Documents]&#xa;&#xa;&#xa;&#xa;&#xa;timestamp: true" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="B4_hM_h811P-XngdZyrY-1" vertex="1">
           <mxGeometry y="30" width="200" height="250" as="geometry" />
         </mxCell>
         <mxCell id="k4_u2IHlp55F23Lpqouv-1" value="Customer" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
