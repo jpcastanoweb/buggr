@@ -11,7 +11,6 @@ const customerSchema = new Schema(
       ref: "Organization",
       required: [true, "belongsTo (org) is required."],
     },
-    dateCreated: Date,
     contactInfo: {
       firstName: String,
       lastName: String,

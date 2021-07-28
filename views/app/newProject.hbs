@@ -10,6 +10,14 @@
                 <input type="text" name="title" placeholder="Project Title" />
                 *
               </label>
+              <br>
+              <label> Customer 
+                <select name="customerId" id="">
+                  {{#each customers}}
+                    <option value={{_id}}>{{name}}</option>
+                  {{/each}}
+                </select>
+              </label>
               <br />
               <label> Start Date:
                 <input type="date" name="startDate" placeholder="" />
@@ -42,6 +50,6 @@
               </label>
               <br />
               <button type="submit">Create Project</button>
-            </form>
+          </form>
     </div>
 </div>

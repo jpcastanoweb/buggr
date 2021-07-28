@@ -1,1 +1,17 @@
-<h1>Edit Org</h1>
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+            <h2>Edit Org</h2>
+            <br>
+            <form action="/app/org/edit" method="POST">
+                <label for="name">New Name: 
+                    <input type="text" name="name" id="" value="{{currentOrg.name}}" />
+                </label>
+                <br/><br/>
+                <button type="submit">Edit Organization</button>
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>

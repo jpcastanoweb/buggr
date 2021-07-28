@@ -1,1 +1,41 @@
-<h1>Edit Project</h1>
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+            <h1>Edit Project</h1>
+            <hr>
+            <h4>Editing: {{title}}</h4>
+            <br />
+            <div id="form">
+                <form action="/app/projects/edit/{{_id}}" method="POST">
+                <label> Title 
+                    <input type="text" name="title" placeholder="Project Title" value="{{title}}" />
+                    *
+                </label>
+                <br />
+                {{!-- <label> Start Date:
+                    <input type="date" name="startDate" placeholder="" value="{{startDate}}" />
+                    *
+                </label>
+                <br />
+                <label> Goal Date:
+                    <input type="date" name="goalDate" placeholder="" value="{{goalDate}}" />
+                    *
+                </label>
+                <br /> --}}
+                <label> Dollar Value:
+                    <input type="text" name="dollarValue" placeholder="0" value="{{dollarValue}}" />
+                    *
+                </label>
+                <br />
+                <label> Current Stage:
+                    <input type="text" name="currentStage" placeholder="0" value="{{currentStage}}" />
+                    *
+                </label>
+                <br />
+                <button type="submit">Update Project</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

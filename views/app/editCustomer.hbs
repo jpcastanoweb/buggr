@@ -1,0 +1,42 @@
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+            <h1>Edit Customer</h1>
+            <hr />
+            <h4>Editing: {{name}}</h4>
+            <br />
+            <div id="form">
+                <form action="/app/customers/edit/{{_id}}" method="POST">
+            
+                <label> Name:  
+                    <input type="text" name="name" placeholder="Customer Name" value="{{name}}" />
+                    *
+                </label>
+                <br />
+                <label> Contact First Name: 
+                    <input type="text" name="contactFirstName" placeholder="Joe" value="{{contactInfo.firstName}}" />
+                    *
+                </label>
+                <br />
+                <label> Contact Last Number: 
+                    <input type="text" name="contactLastName" placeholder="Appleseed" value="{{contactInfo.lastName}}"/>
+                    *
+                </label>
+                <br />
+                <label> Contact Email Address: 
+                    <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" value="{{contactInfo.emailAddress}}"/>
+                    *
+                </label>
+                <br />
+                <label> Contact Phone Number: 
+                    <input type="text" name="contactPhoneNumber" placeholder="123-456-7891" value="{{contactInfo.phoneNumber}}"/>
+                    *
+                </label>
+                <br />
+                <button type="submit">Update Customer</button>
+                </form>
+          </div>
+        </div>
+    </div>
+</div>

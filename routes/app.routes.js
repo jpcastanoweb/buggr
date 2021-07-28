@@ -13,19 +13,19 @@ router.post("/myprofile/edit", isLoggedIn, appController.submitEditMyProfile)
 
 /* Organization */
 router.get("/createorg", isLoggedIn, inApp, appController.createOrg)
-router.get("/org/:orgId", isLoggedIn, inApp, appController.org)
-router.get("/org/:orgId/edit", isLoggedIn, inApp, appController.editOrg)
+router.get("/org", isLoggedIn, inApp, appController.org)
+router.get("/org/edit", isLoggedIn, inApp, appController.editOrg)
 
 router.post("/createorg", isLoggedIn, appController.submitCreateOrg)
-router.post("/org/:orgId/edit", isLoggedIn, appController.submitEditOrg)
-router.post("/org/:orgId/delete", isLoggedIn, appController.submitDeleteOrg)
+router.post("/org/edit", isLoggedIn, appController.submitEditOrg)
+router.post("/org/delete", isLoggedIn, appController.submitDeleteOrg)
 
 /* Project */
 router.get("/projects", isLoggedIn, inApp, appController.projects)
 router.get("/createproject", isLoggedIn, inApp, appController.createProject)
 router.get("/projects/:projectId", isLoggedIn, inApp, appController.project)
 router.get(
-  "/projects/:projectId/edit",
+  "/projects/edit/:projectId",
   isLoggedIn,
   inApp,
   appController.editProject
@@ -33,12 +33,12 @@ router.get(
 
 router.post("/createproject", isLoggedIn, appController.submitCreateProject)
 router.post(
-  "/projects/:projectId/edit",
+  "/projects/edit/:projectId",
   isLoggedIn,
   appController.submitEditProject
 )
 router.post(
-  "/projects/:projectId/delete",
+  "/projects/delete/:projectId",
   isLoggedIn,
   appController.submitDeleteProject
 )
@@ -47,12 +47,17 @@ router.post(
 router.get("/opportunities", isLoggedIn, inApp, appController.opportunities)
 router.get("/createopp", isLoggedIn, inApp, appController.createOpp)
 router.get("/opps/:oppId", isLoggedIn, inApp, appController.opp)
-router.get("/opps/:oppId/edit", isLoggedIn, inApp, appController.editOpp)
+router.get("/opps/edit/:oppId/", isLoggedIn, inApp, appController.editOpp)
 
 router.post("/createopp", isLoggedIn, inApp, appController.submitCreateOpp)
-router.post("/opps/:oppId/edit", isLoggedIn, inApp, appController.submitEditOpp)
 router.post(
-  "/opps/:oppId/delete",
+  "/opps/edit/:oppId/",
+  isLoggedIn,
+  inApp,
+  appController.submitEditOpp
+)
+router.post(
+  "/opps/delete/:oppId",
   isLoggedIn,
   inApp,
   appController.submitDeleteOpp
@@ -60,24 +65,24 @@ router.post(
 
 /* Customers */
 router.get("/customers", isLoggedIn, inApp, appController.customers)
-router.get("/newCustomer", isLoggedIn, inApp, appController.newCustomer)
+router.get("/newcustomer", isLoggedIn, inApp, appController.newCustomer)
 router.get("/customers/:customerId", isLoggedIn, inApp, appController.customer)
 router.get(
-  "customers/:customerId/edit",
+  "/customers/edit/:customerId",
   isLoggedIn,
   inApp,
   appController.editCustomer
 )
 
-router.post("/newCustomer", isLoggedIn, inApp, appController.submitNewCustomer)
+router.post("/newcustomer", isLoggedIn, inApp, appController.submitNewCustomer)
 router.post(
-  "/customers/:customerId/edit",
+  "/customers/edit/:customerId",
   isLoggedIn,
   inApp,
   appController.submitEditCustomer
 )
 router.post(
-  "/customers/:customerId/delete",
+  "/customers/delete/:customerId/",
   isLoggedIn,
   inApp,
   appController.submitDeleteCustomer

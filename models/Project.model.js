@@ -20,6 +20,7 @@ const projectSchema = new Schema(
     },
     startDate: Date,
     goalDate: Date,
+    wasOpp: Boolean,
     oppOpenedDate: Date,
     oppClosedDate: Date,
     currentStage: {
