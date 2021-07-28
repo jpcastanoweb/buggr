@@ -26,12 +26,14 @@
                             <th scope="col">Customer</th>
                             <th scope="col">Date Opened</th>
                             <th scope="col">Expected Close Date</th>
+                            <th scope="col">View</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each opps}}
+
                             <tr>
                                 <td>{{title}}</td>
                                 <td>{{currentStage}}</td>
@@ -39,6 +41,7 @@
                                 <td>{{contactFullName}}</td>
                                 <td>{{openedDate}}</td>
                                 <td>{{closeDate}}</td>
+                                <td><a href="/app/opps/{{_id}}">View</a> </td>
                                 <td><a href="/app/opps/edit/{{_id}}">Edit</a></td>
                                 <td><a href="">Delete</a></td>
                             </tr>

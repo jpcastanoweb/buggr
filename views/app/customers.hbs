@@ -19,6 +19,7 @@
                             <th scope="col">Contact Name</th>
                             <th scope="col">Contact Email Address</th>
                             <th scope="col">Contact Phone Number</th>
+                            <th scope="col">View</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -31,6 +32,7 @@
                                 <td>{{contactInfo.firstName}} {{contactInfo.lastName}}</td>
                                 <td>{{contactInfo.emailAddress}}</td>
                                 <td>{{contactInfo.phoneNumber}}</td>
+                                <td><a href="/app/customers/{{_id}}">View</a></td>
                                 <td><a href="/app/customers/edit/{{_id}}">Edit</a></td>
                                 <td><a href="">Delete</a></td>
                             </tr>

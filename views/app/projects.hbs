@@ -19,6 +19,7 @@
                             <th scope="col">Customer</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">Goal Date</th>
+                            <th scope="col">View</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -31,6 +32,7 @@
                                 <td>{{contactFullName}}</td>
                                 <td>{{startDate}}</td>
                                 <td>{{goalDate}}</td>
+                                <td><a href="/app/projects/{{_id}}">View</a></td>
                                 <td><a href="/app/projects/edit/{{_id}}">Edit</a></td>
                                 <td><a href="">Delete</a></td>
                             </tr>
