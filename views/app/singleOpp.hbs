@@ -4,9 +4,31 @@
         <div class="app-content px-5 pt-4 overflow-auto h-100 w-100">
             <div class="d-flex container-lg justify-content-between px-0">
                 <h2>{{title}}</h2>
-                <form action="/app/convert/{{_id}}" method="POST">
-                    <button type="submit" class="convert-btn">Convert to Project</button>
-                </form>
+                <div>
+                    <button type="button" class="convert-btn" data-bs-toggle="modal" data-bs-target="#convert-opp-modal">
+                        Convert to Project
+                    </button>
+                    <div class="modal fade" id="convert-opp-modal" tabindex="-1" aria-labelledby="convert-opp-modal-label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="convert-opp-modal-label">Convert {{title}}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you to convert {{title}}?</p>
+                                    <p>You cannot undo this action.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <form action="/app/convert/{{_id}}" method="POST">
+                                        <button type="submit" class="btn convert-btn">Convert</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <span class="me-3"><a class="fs-6" href="/app/opps/edit/{{_id}}">Edit Opportunity</a></span>
             <hr>
@@ -55,19 +77,20 @@
             <div class="modal fade" id="delete-opp-modal" tabindex="-1" aria-labelledby="delete-opp-modal-label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="delete-opp-modal-label">Delete {{title}}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete {{title}} and all of it's data?</p>
-                        <p>You cannot undo this action.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <form action="/app/opps/delete/{{_id}}" method="POST">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="delete-opp-modal-label">Delete {{title}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete {{title}} and all of it's data?</p>
+                            <p>You cannot undo this action.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="/app/opps/delete/{{_id}}" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

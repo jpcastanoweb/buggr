@@ -8,43 +8,57 @@
             <br />
             <div id="form">
               <form action="/app/opps/edit/{{_id}}" method="POST">
-            
-                <label> Title 
-                  <input type="text" name="title" placeholder="Opportunity Title" value="{{title}}" />
-                  *
-                </label>
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <label for="name">Title *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="title" placeholder="Opportunity Title" value="{{title}}" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <label for="name">Opened Date *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="date" name="openedDate" placeholder="" value="{{openedDateString}}" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <label for="name">Close Date *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="date" name="closeDate" placeholder="" value="{{closeDateString}}" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <label for="name">Dollar Value *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="dollarValue" placeholder="0" value="{{dollarValue}}"/>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3">
+                        <label for="name">Current Stage *</label>
+                    </div>
+                    <div class="col">
+                        <select class="w-50" type="text" name="currentStage">
+                          {{#select currentStage}}
+                          <option value="New">New</option>
+                          <option value="Discovery">Discovery</option>
+                          <option value="Proposal">Proposal</option>
+                          <option value="Negotiation">Negotiation</option>
+                          <option value="Closed - Won">Closed - Won</option>
+                          <option value="Closed - Lost">Closed - Lost</option>
+                          {{/select}}
+                      </select>
+                    </div>
+                </div>
                 <br />
-                <label> Opened Date:
-                  <input type="date" name="openedDate" placeholder="" value="{{openedDateString}}" />
-                  *
-                </label>
-                <br />
-                <label> Close Date:
-                  <input type="date" name="closeDate" placeholder="" value="{{closeDateString}}" />
-                  *
-                </label>
-                <br />
-                <label> Dollar Value:
-                  <input type="text" name="dollarValue" placeholder="0" value="{{dollarValue}}"/>
-                  *
-                </label>
-                <br />
-                <label> Current Stage:
-                  <select type="text" name="currentStage">
-                      {{#select currentStage}}
-                      <option value="New">New</option>
-                      <option value="Discovery">Discovery</option>
-                      <option value="Proposal">Proposal</option>
-                      <option value="Negotiation">Negotiation</option>
-                      <option value="Closed - Won">Closed - Won</option>
-                      <option value="Closed - Lost">Closed - Lost</option>
-                      {{/select}}
-                  </select>
-                  *
-                </label>
-                <br />
-                
-                <button type="submit">Update Opportunity</button>
+                <button class="convert-btn" type="submit">Update Opportunity</button>
               </form>
           </div>
         </div>

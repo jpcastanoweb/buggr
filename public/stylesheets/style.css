@@ -9,9 +9,11 @@
 /* My code */
 html {
   height: 100%;
+  font-family: 'Raleway', sans-serif !important;
 }
 body {
   height: 100%;
+  font-family: 'Raleway', sans-serif !important;
 }
 
 h1 {
@@ -110,7 +112,7 @@ h1 {
   border-color: #392B58 !important;
   border-radius: 10px;
   padding: 5px 10px;
-  color:white;
+  color:white !important;
 }
 
 /* Stages */

@@ -8,33 +8,49 @@
             <br />
             <div id="form">
                 <form action="/app/customers/edit/{{_id}}" method="POST">
-            
-                <label> Name:  
-                    <input type="text" name="name" placeholder="Customer Name" value="{{name}}" />
-                    *
-                </label>
-                <br />
-                <label> Contact First Name: 
-                    <input type="text" name="contactFirstName" placeholder="Joe" value="{{contactInfo.firstName}}" />
-                    *
-                </label>
-                <br />
-                <label> Contact Last Number: 
-                    <input type="text" name="contactLastName" placeholder="Appleseed" value="{{contactInfo.lastName}}"/>
-                    *
-                </label>
-                <br />
-                <label> Contact Email Address: 
-                    <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" value="{{contactInfo.emailAddress}}"/>
-                    *
-                </label>
-                <br />
-                <label> Contact Phone Number: 
-                    <input type="text" name="contactPhoneNumber" placeholder="123-456-7891" value="{{contactInfo.phoneNumber}}"/>
-                    *
-                </label>
-                <br />
-                <button type="submit">Update Customer</button>
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            <label for="name">Name *</label>
+                        </div>
+                        <div class="col">
+                            <input class="w-50" type="text" name="name" placeholder="Customer Name" value="{{name}}" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            <label>Contact First Name *</label>
+                        </div>
+                        <div class="col ">
+                            <input class="w-50" type="text" name="contactFirstName" placeholder="Joe" value="{{contactInfo.firstName}}" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            <label>Contact Last Number *</label>
+                        </div>
+                        <div class="col">
+                            <input class="w-50" type="text" name="contactLastName" placeholder="Appleseed" value="{{contactInfo.lastName}}"/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            <label>Contact Email Address *</label>
+                        </div>
+                        <div class="col">
+                            <input class="w-50" type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" value="{{contactInfo.emailAddress}}"/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            <label>Contact Phone Number *</label>
+                        </div>
+                        <div class="col">
+                            <input class="w-50" type="text" name="contactPhoneNumber" placeholder="123-456-7891" value="{{contactInfo.phoneNumber}}"/>
+                        </div>
+                    </div>
+                    
+                    <br />
+                    <button type="submit" class="convert-btn">Update Customer</button>
                 </form>
           </div>
         </div>

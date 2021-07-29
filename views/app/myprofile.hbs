@@ -3,15 +3,50 @@
     <div class="w-100 ps-0">
         <div class="app-content px-5 pt-4">
             <h1>My Profile</h1>
+            <span class="me-3"><a class="fs-6" href="/app/myprofile/edit">Edit Profile</a></span>
+            <hr>
             {{#with currentUser}}
-            <p>Username: {{username}}</p>
-            <p>Email: {{email}}</p>
-            <p>First Name: {{firstName}}</p>
-            <p>Last Name: {{lastName}}</p>
-            <p>Role: {{role}}</p>
+            <div class="row">
+                <div class="col-2">
+                    <p>Username</p>
+                </div>
+                <div class="col">
+                    {{username}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <p>Email</p>
+                </div>
+                <div class="col">
+                    {{email}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <p>First Name</p>
+                </div>
+                <div class="col">
+                    {{firstName}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <p>Last Name</p>
+                </div>
+                <div class="col">
+                    {{lastName}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <p>Role</p>
+                </div>
+                <div class="col">
+                    {{role}}
+                </div>
+            </div>
             {{/with}}
-
-            <a href="./myprofile/edit">Edit Info</a>
         </div>
     </div>
 </div>
