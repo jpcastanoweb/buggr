@@ -10,12 +10,32 @@ Buggr CRM will improve your development projects' life-cycle by enhancing produc
 
 Buggr is a tool designed to increase visibility into the status of a development team's projects. Users are able to register and create their organizations. Each organization can then keep track of their different projects and at what stage they are at in order to avoid any of them falling through the cracks.
 
-Functionality:
+### Functionality:
 
 - See all projects side by side
 - Add projects for the entire team to see, keeping track of dollar value, finish dates, current stage, and more.
 - Add focuments to project to keep track of important materials like contracts and resources.
 - Move projects across different stages of development and easily flag stuck ones.
+
+### Stages:
+
+Opportunity:
+
+1. New
+2. Discovery
+3. Proposal
+4. Negotiation
+5. Closed - Won
+6. Closed - Lost
+
+Project
+
+1. Analysis
+2. Design
+3. Implementation
+4. Testing
+5. Delivered
+6. Maintenance
 
 # Desarrollo Backend
 

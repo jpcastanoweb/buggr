@@ -37,6 +37,15 @@ const projectSchema = new Schema(
     oppClosedDate: Date,
     currentStage: {
       type: String,
+      enum: [
+        "Analysis",
+        "Design",
+        "Implementation",
+        "Testing",
+        "Delivered",
+        "Maintenance",
+      ],
+      required: [true, "Stage is required."],
     },
     dollarValue: {
       type: Number,

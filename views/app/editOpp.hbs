@@ -13,16 +13,16 @@
                   <input type="text" name="title" placeholder="Opportunity Title" value="{{title}}" />
                   *
                 </label>
-                {{!-- <br />
+                <br />
                 <label> Opened Date:
-                  <input type="date" name="openedDate" placeholder="" />
+                  <input type="date" name="openedDate" placeholder="" value="{{openedDateString}}" />
                   *
                 </label>
                 <br />
                 <label> Close Date:
-                  <input type="date" name="closeDate" placeholder="" />
+                  <input type="date" name="closeDate" placeholder="" value="{{closeDateString}}" />
                   *
-                </label> --}}
+                </label>
                 <br />
                 <label> Dollar Value:
                   <input type="text" name="dollarValue" placeholder="0" value="{{dollarValue}}"/>
@@ -30,7 +30,16 @@
                 </label>
                 <br />
                 <label> Current Stage:
-                  <input type="text" name="currentStage" placeholder="Current Stage" value="{{currentStage}}" />
+                  <select type="text" name="currentStage">
+                      {{#select currentStage}}
+                      <option value="New">New</option>
+                      <option value="Discovery">Discovery</option>
+                      <option value="Proposal">Proposal</option>
+                      <option value="Negotiation">Negotiation</option>
+                      <option value="Closed - Won">Closed - Won</option>
+                      <option value="Closed - Lost">Closed - Lost</option>
+                      {{/select}}
+                  </select>
                   *
                 </label>
                 <br />

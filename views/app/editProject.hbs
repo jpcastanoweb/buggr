@@ -13,23 +13,32 @@
                     *
                 </label>
                 <br />
-                {{!-- <label> Start Date:
-                    <input type="date" name="startDate" placeholder="" value="{{startDate}}" />
+                <label> Start Date:
+                    <input type="date" name="startDate" placeholder="" value="{{startDateString}}"/>
                     *
                 </label>
                 <br />
                 <label> Goal Date:
-                    <input type="date" name="goalDate" placeholder="" value="{{goalDate}}" />
+                    <input type="date" name="goalDate" placeholder="" value="{{goalDateString}}"/>
                     *
                 </label>
-                <br /> --}}
+                <br />
                 <label> Dollar Value:
                     <input type="text" name="dollarValue" placeholder="0" value="{{dollarValue}}" />
                     *
                 </label>
                 <br />
                 <label> Current Stage:
-                    <input type="text" name="currentStage" placeholder="0" value="{{currentStage}}" />
+                    <select type="text" name="currentStage">
+                        {{#select currentStage}}
+                        <option value="Analysis">Analysis</option>
+                        <option value="Design">Design</option>
+                        <option value="Implementation">Implementation</option>
+                        <option value="Testing">Testing</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Maintenance">Maintenance</option>
+                        {{/select}}
+                    </select>
                     *
                 </label>
                 <br />

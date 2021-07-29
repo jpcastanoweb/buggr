@@ -26,6 +26,16 @@ function getCustomerRevString(projects) {
   return toDollarString(totalRev)
 }
 
+function toDateString(date) {
+  return (
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() > 8 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)) +
+    "-" +
+    (date.getDate() > 8 ? date.getDate() + 1 : "0" + (date.getDate() + 1))
+  )
+}
+
 /* GET requests */
 exports.myprofile = async (req, res, next) => {
   return res.render("app/myprofile")
@@ -59,8 +69,9 @@ exports.project = async (req, res, next) => {
 
   try {
     const project = await Project.findById(projectId).populate("forCustomer")
-    // project.valueString = formatter(project.dollarValue)
-    // console.log()
+    project.startDateString = toDateString(project.startDate)
+    project.goalDateString = toDateString(project.goalDate)
+
     return res.render("app/singleProject", project)
   } catch (error) {
     console.log("Error loading specific project", error.message)
@@ -71,6 +82,8 @@ exports.editProject = async (req, res, next) => {
 
   try {
     const project = await Project.findById(projectId)
+    project.goalDateString = toDateString(project.goalDate)
+    project.startDateString = toDateString(project.startDate)
 
     return res.render("app/editProject", project)
   } catch (error) {
@@ -92,9 +105,10 @@ exports.opp = async (req, res, next) => {
   const { oppId } = req.params
 
   try {
-    let opp = await Opportunity.findById(oppId).populate("forCustomer")
+    const opp = await Opportunity.findById(oppId).populate("forCustomer")
+    opp.openedDateString = toDateString(opp.openedDate)
+    opp.closeDateString = toDateString(opp.closeDate)
 
-    console.log(opp)
     return res.render("app/singleOpp", opp)
   } catch (error) {
     console.log("Error loading specific opportunity", error.message)
@@ -105,6 +119,8 @@ exports.editOpp = async (req, res, next) => {
 
   try {
     const opp = await Opportunity.findById(oppId)
+    opp.openedDateString = toDateString(opp.openedDate)
+    opp.closeDateString = toDateString(opp.closeDate)
 
     return res.render("app/editOpp", opp)
   } catch (error) {
@@ -154,6 +170,8 @@ exports.customer = async (req, res, next) => {
       )
     }
     const projectRevString = toDollarString(projectRevenue)
+
+    customer.dateAddedString = toDateString(customer.createdAt)
 
     return res.render("app/singleCustomer", {
       customer,
@@ -342,7 +360,7 @@ exports.submitCreateProject = async (req, res, next) => {
       wasOpp: false,
       oppOpenedDate: null,
       oppCloseDate: null,
-      currentStage: "New",
+      currentStage: "Analysis",
       dollarValue,
       posts: [],
       documents: [],
@@ -370,13 +388,16 @@ exports.submitCreateProject = async (req, res, next) => {
   }
 }
 exports.submitEditProject = async (req, res, next) => {
-  const { title, dollarValue, currentStage } = req.body
+  const { title, startDate, goalDate, dollarValue, currentStage } = req.body
   const { projectId } = req.params
+  const dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
 
   try {
     await Project.findByIdAndUpdate(projectId, {
       title,
-      dollarValue,
+      startDate,
+      goalDate,
+      dollarValue: dollarValueNumber,
       currentStage,
     })
 
@@ -454,13 +475,16 @@ exports.submitCreateOpp = async (req, res, next) => {
   }
 }
 exports.submitEditOpp = async (req, res, next) => {
-  const { title, dollarValue, currentStage } = req.body
+  const { title, openedDate, closeDate, dollarValue, currentStage } = req.body
   const { oppId } = req.params
+  const dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
 
   try {
     await Opportunity.findByIdAndUpdate(oppId, {
       title,
-      dollarValue,
+      openedDate,
+      closeDate,
+      dollarValue: dollarValueNumber,
       currentStage,
     })
 
@@ -628,7 +652,7 @@ exports.convertOppToProject = async (req, res, next) => {
       wasOpp: true,
       oppOpenedDate: opp.openedDate,
       oppCloseDate: opp.closeDate,
-      currentStage: "Design",
+      currentStage: "Analysis",
       dollarValue,
       posts: [],
       documents: [],
@@ -649,7 +673,6 @@ exports.convertOppToProject = async (req, res, next) => {
 
     console.log("pushed project to customer")
 
-    // delete opp from org and customer
     await Organization.findByIdAndUpdate(req.session.currentOrg._id, {
       $pull: { opportunities: opp._id },
     })

@@ -34,6 +34,15 @@ const opportunitySchema = new Schema(
     closeDate: Date,
     currentStage: {
       type: String,
+      enum: [
+        "New",
+        "Discovery",
+        "Proposal",
+        "Negotiation",
+        "Closed-Won",
+        "Closed-Lost",
+      ],
+      required: [true, "Stage is required."],
     },
     dollarValue: {
       type: Number,

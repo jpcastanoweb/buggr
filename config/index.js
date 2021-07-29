@@ -39,6 +39,16 @@ module.exports = (app) => {
   // Register Partials
   hbs.registerPartials(path.join(__dirname, "..", "views/partials"))
 
+  //credit to Dan at https://stackoverflow.com/questions/13046401/how-to-set-selected-select-option-in-handlebars-template
+  hbs.registerHelper("select", function (selected, options) {
+    return options
+      .fn(this)
+      .replace(
+        new RegExp(' value="' + selected + '"'),
+        '$& selected="selected"'
+      )
+  })
+
   // Handles access to the favicon
   app.use(
     favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
