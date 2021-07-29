@@ -290,6 +290,9 @@ exports.submitEditMyProfile = async (req, res, next) => {
     req.session.currentUser = updatedUser
     return res.redirect("/app/myprofile")
   } catch (error) {
+    res.redirect("/app/myprofile/edit", {
+      msg: error.message,
+    })
     console.log(error.message)
   }
 }

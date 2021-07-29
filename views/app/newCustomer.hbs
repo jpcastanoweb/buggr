@@ -33,6 +33,10 @@
               <br />
               <button type="submit">Create Customer</button>
             </form>
+            <br>
+            {{#if msg}}
+                <p class="error">{{msg}}</p>
+            {{/if}}
           </div>
         </div>
     </div>
