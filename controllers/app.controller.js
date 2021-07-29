@@ -94,6 +94,7 @@ exports.opp = async (req, res, next) => {
   try {
     let opp = await Opportunity.findById(oppId).populate("forCustomer")
 
+    console.log(opp)
     return res.render("app/singleOpp", opp)
   } catch (error) {
     console.log("Error loading specific opportunity", error.message)
@@ -603,5 +604,75 @@ exports.submitDeleteCustomer = async (req, res, next) => {
     res.redirect("/app/customers")
   } catch (error) {
     console.log("Error while deleting customer: ", error.message)
+  }
+}
+
+/* Convert POST */
+exports.convertOppToProject = async (req, res, next) => {
+  const { oppId } = req.params
+  // const { goalDate } = req.body
+
+  try {
+    const opp = await Opportunity.findById(oppId)
+
+    const startDate = new Date()
+    const goalDate = new Date()
+    const dollarValue = Number(opp.dollarValue.replace(/[^0-9.-]+/g, ""))
+    // create new project
+    const newProject = await Project.create({
+      title: opp.title,
+      belongsTo: req.session.currentOrg._id,
+      forCustomer: opp.forCustomer,
+      startDate,
+      goalDate,
+      wasOpp: true,
+      oppOpenedDate: opp.openedDate,
+      oppCloseDate: opp.closeDate,
+      currentStage: "Design",
+      dollarValue,
+      posts: [],
+      documents: [],
+    })
+
+    console.log("Created project")
+
+    // adding to org and customer
+    await Organization.findByIdAndUpdate(req.session.currentOrg._id, {
+      $push: { projects: newProject._id },
+    })
+
+    console.log("pushed project to org")
+
+    await Customer.findByIdAndUpdate(opp.belongsTo, {
+      $push: { projects: newProject._id },
+    })
+
+    console.log("pushed project to customer")
+
+    // delete opp from org and customer
+    await Organization.findByIdAndUpdate(req.session.currentOrg._id, {
+      $pull: { opportunities: opp._id },
+    })
+
+    console.log("pulled opp from org")
+
+    await Customer.findByIdAndUpdate(opp.belongsTo, {
+      $pull: { opportunities: opp._id },
+    })
+
+    console.log("pulled opp from customer")
+
+    // delete opp
+    await Opportunity.findByIdAndDelete(opp._id)
+
+    console.log("deleted opp")
+
+    console.log("New project", newProject)
+    console.log("session org", req.session.currentOrg)
+
+    // redirect to projects
+    res.redirect("/app/opportunities")
+  } catch (error) {
+    console.log("Error converting opp to project", error.message)
   }
 }

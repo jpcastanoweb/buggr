@@ -87,4 +87,13 @@ router.post(
   inApp,
   appController.submitDeleteCustomer
 )
+
+/* convert from opp to project */
+router.post(
+  "/convert/:oppId",
+  isLoggedIn,
+  inApp,
+  appController.convertOppToProject
+)
+
 module.exports = router

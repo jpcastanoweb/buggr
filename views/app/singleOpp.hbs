@@ -4,7 +4,9 @@
         <div class="app-content px-5 pt-4 overflow-auto h-100 w-100">
             <div class="d-flex container-lg justify-content-between px-0">
                 <h2>{{title}}</h2>
-                <button class="convert-btn">Convert to Project</button>
+                <form action="/app/convert/{{_id}}" method="POST">
+                    <button type="submit" class="convert-btn">Convert to Project</button>
+                </form>
             </div>
             <span class="me-3"><a class="fs-6" href="/app/opps/edit/{{_id}}">Edit Opportunity</a></span>
             <hr>
