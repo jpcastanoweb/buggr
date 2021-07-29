@@ -43,6 +43,16 @@ const customerSchema = new Schema(
     },
     customerPhoneNumber: String,
     customerEmailAddress: String,
+    documents: {
+      type: [
+        {
+          name: String,
+          fileType: String,
+          docUrl: String,
+        },
+      ],
+      default: [],
+    },
   },
   {
     timestamps: true,

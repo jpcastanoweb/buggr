@@ -54,7 +54,13 @@ const opportunitySchema = new Schema(
       default: [],
     },
     documents: {
-      type: [{ type: Schema.Types.ObjectId }],
+      type: [
+        {
+          name: String,
+          fileType: String,
+          docUrl: String,
+        },
+      ],
       default: [],
     },
   },

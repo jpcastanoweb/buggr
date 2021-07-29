@@ -4,6 +4,7 @@ const Project = require("./../models/Project.model")
 const Opportunity = require("./../models/Opportunity.model")
 const User = require("./../models/User.model")
 const Customer = require("./../models/Customer.model")
+const fileUploader = require("./../config/cloudinary.config")
 
 function toDollarString(val) {
   let formatter = new Intl.NumberFormat("en-US", {
@@ -743,5 +744,123 @@ exports.convertOppToProject = async (req, res, next) => {
     res.redirect("/app/opportunities")
   } catch (error) {
     console.log("Error converting opp to project", error.message)
+  }
+}
+
+/* File Uploaders */
+
+// Customer
+exports.uploadFileCustomer = async (req, res, next) => {
+  const { customerId } = req.params
+  res.render("app/uploadFile", {
+    customerId,
+  })
+}
+
+exports.submitUploadFileCustomer = async (req, res, next) => {
+  const { customerId } = req.params
+  const { fileName } = req.body
+
+  if (!fileName | !req.file) {
+    return res.redirect(`/app/customers/${customerId}`)
+  }
+
+  console.log(req.file.mimetype)
+
+  try {
+    const customer = await Customer.findByIdAndUpdate(
+      customerId,
+      {
+        $push: {
+          documents: {
+            name: fileName,
+            fileType: req.file.mimetype,
+            docUrl: req.file.path,
+          },
+        },
+      },
+      { new: true }
+    )
+
+    console.log(customer)
+    res.redirect(`/app/customers/${customerId}`)
+  } catch (error) {
+    console.log("Error uploading new document", error.message)
+  }
+}
+
+// Project
+
+exports.uploadFileProject = async (req, res, next) => {
+  const { projectId } = req.params
+  res.render("app/uploadFile", {
+    projectId,
+  })
+}
+
+exports.submitUploadFileProject = async (req, res, next) => {
+  const { projectId } = req.params
+  const { fileName } = req.body
+
+  if (!fileName | !req.file) {
+    return res.redirect(`/app/projects/${projectId}`)
+  }
+
+  try {
+    const project = await Project.findByIdAndUpdate(
+      projectId,
+      {
+        $push: {
+          documents: {
+            name: fileName,
+            fileType: req.file.mimetype,
+            docUrl: req.file.path,
+          },
+        },
+      },
+      { new: true }
+    )
+
+    res.redirect(`/app/projects/${projectId}`)
+  } catch (error) {
+    console.log("Error uploading new document", error.message)
+  }
+}
+
+// Project
+
+exports.uploadFileOpp = async (req, res, next) => {
+  const { oppId } = req.params
+  res.render("app/uploadFile", {
+    oppId,
+  })
+}
+
+exports.submitUploadFileOpp = async (req, res, next) => {
+  const { oppId } = req.params
+  const { fileName } = req.body
+
+  if (!fileName | !req.file) {
+    return res.redirect(`/app/opps/${oppId}`)
+  }
+
+  try {
+    const opp = await Opportunity.findByIdAndUpdate(
+      oppId,
+      {
+        $push: {
+          documents: {
+            name: fileName,
+            fileType: req.file.mimetype,
+            docUrl: req.file.path,
+          },
+        },
+      },
+      { new: true }
+    )
+
+    res.redirect(`/app/opps/${oppId}`)
+  } catch (error) {
+    console.log("Error uploading new document", error.message)
   }
 }

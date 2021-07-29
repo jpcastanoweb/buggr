@@ -22,7 +22,7 @@
                     </div>
                     <div class="col d-flow flex-column">
                         <p class="mb-1 fs-7">Customer Since</p>
-                        <p class="fs-5">{{dateAddedString}}</p> {{!-- TODO: Change to actual date --}}
+                        <p class="fs-5">{{dateAddedString}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -102,6 +102,35 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <br>
+                <div class="d-flex  justify-content-start align-items-center">
+                    <h4 class="me-3 mb-0">Documents</h4>
+                    <button type="button" class="btn convert-btn" data-bs-toggle="modal" data-bs-target="#upload-modal">
+                        {{!-- <a href="/app/customers/uploadfile/{{customer._id}}">Upload New Document</a> --}}
+                        Upload New Document
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="">
+                            <tr>
+                                <th scope="col">Document</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">View</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each customer.documents}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{fileType}}</td>
+                                <td><a href="{{docUrl}}">View</a></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <hr>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-customer-modal">
@@ -109,6 +138,7 @@
             </button>
             <br/>
             <br/>
+            {{!-- Delete Customer Modal --}}
             <div class="modal fade" id="delete-customer-modal" tabindex="-1" aria-labelledby="delete-customer-modal-label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -126,6 +156,41 @@
                                 <button type="submit" class="btn btn-danger text-white">Delete</button>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- Upload Doc Modal --}}
+            <div class="modal fade" id="upload-modal" tabindex="-1" aria-labelledby="upload-modal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="/app/customers/uploadfile/{{customer._id}}" method="POST" enctype="multipart/form-data">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="upload-modal-label">Upload New Document</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-2 me-1">
+                                    <div class="col-5">
+                                        <label for="name">Document Name: *</label>
+                                    </div>
+                                    <div class="col">
+                                        <input class="w-100" type="text" name="fileName" placeholder="Contract" />
+                                    </div>
+                                </div>
+                                <div class="row mb-2 me-1">
+                                    <div class="col-5">
+                                        <label for="name">File Upload: *</label>
+                                    </div>
+                                    <div class="col">
+                                        <input class="w-100" type="file" name="document-file" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn convert-btn text-white">Upload</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ const router = require("express").Router()
 const appController = require("./../controllers/app.controller")
 const { isLoggedIn, isLoggedOut } = require("./../middleware/route-guard")
 const { inApp, outApp } = require("./../middleware/header-setter")
+const fileUploader = require("./../config/cloudinary.config")
 
 /* App Default -> Opportunities */
 router.get("/", isLoggedIn, inApp, appController.customers)
@@ -94,6 +95,51 @@ router.post(
   isLoggedIn,
   inApp,
   appController.convertOppToProject
+)
+
+/* File Upload */
+// Customers
+router.get(
+  "/customers/uploadfile/:customerId",
+  isLoggedIn,
+  inApp,
+  appController.uploadFileCustomer
+)
+router.post(
+  "/customers/uploadfile/:customerId",
+  fileUploader.single("document-file"),
+  isLoggedIn,
+  inApp,
+  appController.submitUploadFileCustomer
+)
+// Projects
+router.get(
+  "/projects/uploadfile/:projectId",
+  isLoggedIn,
+  inApp,
+  appController.uploadFileProject
+)
+router.post(
+  "/projects/uploadfile/:projectId",
+  fileUploader.single("document-file"),
+  isLoggedIn,
+  inApp,
+  appController.submitUploadFileProject
+)
+
+// Opportunities
+router.get(
+  "/opps/uploadfile/:oppId",
+  isLoggedIn,
+  inApp,
+  appController.uploadFileOpp
+)
+router.post(
+  "/opps/uploadfile/:oppId",
+  fileUploader.single("document-file"),
+  isLoggedIn,
+  inApp,
+  appController.submitUploadFileOpp
 )
 
 module.exports = router

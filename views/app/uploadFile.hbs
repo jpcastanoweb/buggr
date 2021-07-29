@@ -1,0 +1,34 @@
+<div class="d-flex h-100">
+    {{>appheader}}
+    <div class="w-100 ps-0">
+        <div class="app-content px-5 pt-4">
+          <h1>Upload File</h1>
+          <hr>
+          <div id="form">
+            <form action="/app/customers/uploadfile/{{customerId}}" method="POST" enctype="multipart/form-data">
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Name *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="fileName" placeholder="Opportunity Title" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">File Upload: *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="file" name="document-file" />
+                    </div>
+                </div>
+              <button class="convert-btn" type="submit">Upload File</button>
+            </form>
+            <br>
+            {{#if msg}}
+                <p class="error">{{msg}}</p>
+            {{/if}}
+          </div>
+        </div>
+    </div>
+</div>
