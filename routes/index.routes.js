@@ -3,9 +3,7 @@ const homeController = require("./../controllers/home.controller")
 const { inApp, outApp } = require("./../middleware/header-setter")
 
 /* GET home page */
-router.get("/", outApp, (req, res, next) => {
-  res.render("index")
-})
+router.get("/", outApp, homeController.home)
 
 router.get("/aboutus", outApp, homeController.aboutus)
 router.get("/product", outApp, homeController.product)
