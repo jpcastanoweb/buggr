@@ -384,7 +384,33 @@ exports.submitEditProject = async (req, res, next) => {
     console.log("Error editing project", error.message)
   }
 }
-exports.submitDeleteProject = async (req, res, next) => {}
+exports.submitDeleteProject = async (req, res, next) => {
+  const { projectId } = req.params
+
+  try {
+    const project = await Project.findById(projectId)
+
+    // delete id from customer projects
+    await Customer.findByIdAndUpdate(project.forCustomer, {
+      $pull: { projects: projectId },
+    })
+    // delete id from org opps
+    const updatedOrg = await Organization.findByIdAndUpdate(
+      project.belongsTo,
+      { $pull: { projects: projectId } },
+      { new: true }
+    )
+    //update session org
+    req.session.currentOrg = updatedOrg
+
+    // delete opp
+    await Project.findByIdAndDelete(projectId)
+
+    res.redirect("/app/projects")
+  } catch (error) {
+    console.log("Error deleting project: ", error.message)
+  }
+}
 exports.submitCreateOpp = async (req, res, next) => {
   //create new project
   const { title, customerId, openedDate, closeDate, dollarValue } = req.body
@@ -442,7 +468,33 @@ exports.submitEditOpp = async (req, res, next) => {
     console.log("Error editing opportunity", error.message)
   }
 }
-exports.submitDeleteOpp = async (req, res, next) => {}
+exports.submitDeleteOpp = async (req, res, next) => {
+  const { oppId } = req.params
+
+  try {
+    const opp = await Opportunity.findById(oppId)
+
+    // delete id from customer opps
+    await Customer.findByIdAndUpdate(opp.forCustomer, {
+      $pull: { opportunities: oppId },
+    })
+    // delete id from org opps
+    const updatedOrg = await Organization.findByIdAndUpdate(
+      opp.belongsTo,
+      { $pull: { opportunities: oppId } },
+      { new: true }
+    )
+    //update session org
+    req.session.currentOrg = updatedOrg
+
+    // delete opp
+    await Opportunity.findByIdAndDelete(oppId)
+
+    res.redirect("/app/opportunities")
+  } catch (error) {
+    console.log("Error deleting opportunity: ", error.message)
+  }
+}
 exports.submitNewCustomer = async (req, res, next) => {
   const {
     name,
@@ -506,4 +558,50 @@ exports.submitEditCustomer = async (req, res, next) => {
     console.log("Error editing customer", error.message)
   }
 }
-exports.submitDeleteCustomer = async (req, res, next) => {}
+exports.submitDeleteCustomer = async (req, res, next) => {
+  // console.log("will delete customer")
+  const { customerId } = req.params
+
+  try {
+    const customer = await Customer.findById(customerId)
+
+    console.log(customer.projects)
+
+    // delete all projects
+    for (let i = 0; i < customer.projects.length; i++) {
+      // delete from org
+      await Organization.findByIdAndUpdate(customer.belongsTo, {
+        $pull: { projects: customer.projects[i] },
+      })
+      // delete project
+      await Project.findByIdAndDelete(customer.projects[i])
+    }
+
+    // delete opportunities
+    for (let i = 0; i < customer.opportunities.length; i++) {
+      //delete from org
+      await Organization.findByIdAndUpdate(customer.belongsTo, {
+        $pull: { opportunities: customer.opportunities[i] },
+      })
+      //delete opportunity
+      await Opportunity.findByIdAndDelete(customer.opportunities[i])
+    }
+
+    // delete customer from org.customers
+    await Organization.findByIdAndUpdate(customer.belongsTo, {
+      $pull: { customers: customerId },
+    })
+
+    //delete customer
+    await Customer.findByIdAndDelete(customerId)
+
+    //update current org
+    const updatedOrg = await Organization.findById(req.session.currentOrg._id)
+    req.session.currentOrg = updatedOrg
+
+    //redirect
+    res.redirect("/app/customers")
+  } catch (error) {
+    console.log("Error while deleting customer: ", error.message)
+  }
+}

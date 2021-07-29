@@ -103,6 +103,31 @@
                     </table>
                 </div>
             </div>
+            <hr>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-customer-modal">
+                Delete Customer
+            </button>
+            <br/>
+            <br/>
+            <div class="modal fade" id="delete-customer-modal" tabindex="-1" aria-labelledby="delete-customer-modal-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="delete-customer-modal-label">Delete {{customer.name}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete {{customer.name}} and all of it's data?</p>
+                        <p>You cannot undo this action.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form action="/app/customers/delete/{{customer._id}}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

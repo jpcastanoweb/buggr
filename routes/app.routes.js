@@ -4,7 +4,7 @@ const { isLoggedIn, isLoggedOut } = require("./../middleware/route-guard")
 const { inApp, outApp } = require("./../middleware/header-setter")
 
 /* App Default -> Opportunities */
-router.get("/", isLoggedIn, inApp, appController.opportunities)
+router.get("/", isLoggedIn, inApp, appController.customers)
 
 /* Profile */
 router.get("/myprofile", isLoggedIn, inApp, appController.myprofile)
