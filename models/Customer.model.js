@@ -12,9 +12,18 @@ const customerSchema = new Schema(
       required: [true, "belongsTo (org) is required."],
     },
     contactInfo: {
-      firstName: String,
-      lastName: String,
-      emailAddress: String,
+      firstName: {
+        type: String,
+        required: [true, "Contact First Name is required."],
+      },
+      lastName: {
+        type: String,
+        required: [true, "Contact Last Name is required."],
+      },
+      emailAddress: {
+        type: String,
+        required: [true, "Contact Email Address is required."],
+      },
       phoneNumber: String,
     },
     projects: {

@@ -680,7 +680,6 @@ exports.submitDeleteCustomer = async (req, res, next) => {
 /* Convert POST */
 exports.convertOppToProject = async (req, res, next) => {
   const { oppId } = req.params
-  // const { goalDate } = req.body
 
   try {
     const opp = await Opportunity.findById(oppId)
@@ -705,41 +704,42 @@ exports.convertOppToProject = async (req, res, next) => {
     })
 
     console.log("Created project")
-
-    // adding to org and customer
-    await Organization.findByIdAndUpdate(req.session.currentOrg._id, {
-      $push: { projects: newProject._id },
-    })
-
-    console.log("pushed project to org")
-
-    await Customer.findByIdAndUpdate(opp.belongsTo, {
-      $push: { projects: newProject._id },
-    })
-
-    console.log("pushed project to customer")
-
-    await Organization.findByIdAndUpdate(req.session.currentOrg._id, {
+    await Organization.findByIdAndUpdate(newProject.belongsTo, {
       $pull: { opportunities: opp._id },
     })
 
     console.log("pulled opp from org")
 
-    await Customer.findByIdAndUpdate(opp.belongsTo, {
+    await Customer.findByIdAndUpdate(newProject.forCustomer, {
       $pull: { opportunities: opp._id },
     })
 
     console.log("pulled opp from customer")
 
     // delete opp
-    await Opportunity.findByIdAndDelete(opp._id)
+    await Opportunity.findByIdAndDelete(oppId)
 
     console.log("deleted opp")
+
+    // adding to org and customer
+    await Organization.findByIdAndUpdate(newProject.belongsTo, {
+      $push: { projects: newProject._id },
+    })
+
+    console.log("pushed project to org")
+
+    await Customer.findByIdAndUpdate(newProject.forCustomer, {
+      $push: { projects: newProject._id },
+    })
+
+    console.log("pushed project to customer")
 
     console.log("New project", newProject)
     console.log("session org", req.session.currentOrg)
 
     // redirect to projects
+    // const updatedOrg = Organization.findById(newProject.belongsTo)
+    // req.session.currentOrg = updatedOrg
     res.redirect("/app/opportunities")
   } catch (error) {
     console.log("Error converting opp to project", error.message)

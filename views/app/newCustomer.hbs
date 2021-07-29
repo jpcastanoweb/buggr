@@ -3,35 +3,51 @@
     <div class="w-100 ps-0">
         <div class="app-content px-5 pt-4">
           <h1>Add New Customer</h1>
+          <hr>
           <div id="form">
             <form action="/app/newcustomer" method="POST">
-          
-              <label> Name:  
-                <input type="text" name="name" placeholder="Buggr" />
-                *
-              </label>
-              <br />
-              <label> Contact First Name: 
-                <input type="text" name="contactFirstName" placeholder="Joe" />
-                *
-              </label>
-              <br />
-              <label> Contact Last Number: 
-                <input type="text" name="contactLastName" placeholder="Appleseed" />
-                *
-              </label>
-              <br />
-              <label> Contact Email Address: 
-                <input type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
-                *
-              </label>
-              <br />
-              <label> Contact Phone Number: 
-                <input type="text" name="contactPhoneNumber" placeholder="123-456-7891" />
-                *
-              </label>
-              <br />
-              <button type="submit">Create Customer</button>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Name *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="name" placeholder="Buggr" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Contact First Name *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="contactFirstName" placeholder="Joe" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Contact Last Number *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="contactLastName" placeholder="Appleseed" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Contact Email Address *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Contact Phone Number</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="contactPhoneNumber" placeholder="123-456-7891" />
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="convert-btn">Create Customer</button>
             </form>
             <br>
             {{#if msg}}

@@ -3,38 +3,54 @@
     <div class="w-100 ps-0">
         <div class="app-content px-5 pt-4">
           <h1>Create Project</h1>
+          <hr>
           <div id="form">
             <form action="/app/createproject" method="POST">
-          
-              <label> Title 
-                <input type="text" name="title" placeholder="Project Title" />
-                *
-              </label>
-              <br>
-              <label> Customer 
-                <select name="customerId" id="">
-                  {{#each customers}}
-                    <option value="{{_id}}">{{name}}</option>
-                  {{/each}}
-                </select>
-                *
-              </label>
-              <br />
-              <label> Start Date
-                <input type="date" name="startDate" placeholder="" />
-                *
-              </label>
-              <br />
-              <label> Goal Date
-                <input type="date" name="goalDate" placeholder="" />
-                *
-              </label>
-              <br />
-              <label> Dollar Value
-                <input type="text" name="dollarValue" placeholder="0" />
-                *
-              </label>
-              <br />
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Title *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="title" placeholder="Project Title" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Customer *</label>
+                    </div>
+                    <div class="col">
+                        <select class="w-50" name="customerId" id="">
+                          {{#each customers}}
+                            <option value="{{_id}}">{{name}}</option>
+                          {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Start Date *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="date" name="startDate" placeholder="" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Goal Date *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="date" name="goalDate" placeholder="" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Dollar Value *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="date" name="goalDate" placeholder="" />
+                    </div>
+                </div>
+                <br />
               <button type="submit">Create Project</button>
           </form>
           <br>

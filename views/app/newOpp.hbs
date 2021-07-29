@@ -3,39 +3,55 @@
     <div class="w-100 ps-0">
         <div class="app-content px-5 pt-4">
           <h1>Create Opportunity</h1>
+          <hr>
           <div id="form">
             <form action="/app/createopp" method="POST">
-          
-              <label> Title 
-                <input type="text" name="title" placeholder="Project Title" />
-                *
-              </label>
-              <br />
-              <label> Customer 
-                <select name="customerId" id="">
-                  {{#each customers}}
-                    <option value="{{_id}}">{{name}}</option>
-                  {{/each}}
-                </select>
-                *
-              </label>
-              <br />
-              <label> Opened Date
-                <input type="date" name="openedDate" placeholder="" />
-                *
-              </label>
-              <br />
-              <label> Close Date
-                <input type="date" name="closeDate" placeholder="" />
-                *
-              </label>
-              <br />
-              <label> Dollar Value
-                <input type="text" name="dollarValue" placeholder="0" />
-                *
-              </label>
-              <br />
-              <button type="submit">Create Opportunity</button>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Title *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="title" placeholder="Opportunity Title" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Customer *</label>
+                    </div>
+                    <div class="col">
+                        <select class="w-50" name="customerId" id="">
+                          {{#each customers}}
+                            <option value="{{_id}}">{{name}}</option>
+                          {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Opened Date *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="date" name="openedDate" placeholder="" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Close Date *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="date" name="closeDate" placeholder="" />
+                    </div>
+                </div>
+                <div class="row mb-2 me-1">
+                    <div class="col-3">
+                        <label for="name">Dollar Value *</label>
+                    </div>
+                    <div class="col">
+                        <input class="w-50" type="text" name="dollarValue" placeholder="0" />
+                    </div>
+                </div>
+                <br />
+              <button class="convert-btn" type="submit">Create Opportunity</button>
             </form>
             <br>
             {{#if msg}}
