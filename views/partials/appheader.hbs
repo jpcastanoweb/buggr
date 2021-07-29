@@ -6,15 +6,15 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="/app/customers" class="nav-link text-decoration-none text-white">Customers</a>
+            <a href="/app/customers" class="nav-link text-decoration-none text-white {{#if customersActive}}active-app-tab{{/if}}">Customers</a>
         </li>
         <hr>
         <li class="nav-item">
-            <a href="/app/opportunities" class="nav-link text-decoration-none text-white">Opportunities</a>
+            <a href="/app/opportunities" class="nav-link text-decoration-none text-white {{#if opportunitiesActive}}active-app-tab{{/if}}">Opportunities</a>
         </li>
         <hr>
         <li class="nav-item">
-            <a href="/app/projects" class="nav-link text-decoration-none text-white">Projects</a>
+            <a href="/app/projects" class="nav-link text-decoration-none text-white {{#if projectsActive}}active-app-tab{{/if}}">Projects</a>
         </li>
     </ul>
     <div>

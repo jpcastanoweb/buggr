@@ -36,20 +36,50 @@ function toDateString(date) {
   )
 }
 
+function setTabActive(tab, res) {
+  switch (tab) {
+    case "opportunities":
+      res.locals.opportunitiesActive = true
+      res.locals.customersActive = false
+      res.locals.projectsActive = false
+      break
+    case "customers":
+      res.locals.opportunitiesActive = false
+      res.locals.customersActive = true
+      res.locals.projectsActive = false
+      break
+    case "projects":
+      res.locals.opportunitiesActive = false
+      res.locals.customersActive = false
+      res.locals.projectsActive = true
+      break
+    default:
+      res.locals.opportunitiesActive = false
+      res.locals.customersActive = false
+      res.locals.projectsActive = false
+      break
+  }
+}
+
 /* GET requests */
 exports.myprofile = async (req, res, next) => {
+  setTabActive("", res)
   return res.render("app/myprofile")
 }
 exports.editMyProfile = async (req, res, next) => {
+  setTabActive("", res)
   return res.render("app/editMyProfile")
 }
 exports.createOrg = async (req, res, next) => {
+  setTabActive("", res)
   return res.render("app/createOrg")
 }
 exports.org = async (req, res, next) => {
+  setTabActive("", res)
   return res.render("app/singleOrg")
 }
 exports.editOrg = async (req, res, next) => {
+  setTabActive("", res)
   //TODO: only if admin
   return res.render("app/editOrg")
 }
@@ -59,6 +89,7 @@ exports.createProject = async (req, res, next) => {
       belongsTo: req.session.currentOrg._id,
     })
 
+    setTabActive("projects", res)
     return res.render("app/newProject", { customers })
   } catch (error) {
     console.log("Error loading create project form", error.message)
@@ -72,6 +103,7 @@ exports.project = async (req, res, next) => {
     project.startDateString = toDateString(project.startDate)
     project.goalDateString = toDateString(project.goalDate)
 
+    setTabActive("projects", res)
     return res.render("app/singleProject", project)
   } catch (error) {
     console.log("Error loading specific project", error.message)
@@ -85,6 +117,7 @@ exports.editProject = async (req, res, next) => {
     project.goalDateString = toDateString(project.goalDate)
     project.startDateString = toDateString(project.startDate)
 
+    setTabActive("projects", res)
     return res.render("app/editProject", project)
   } catch (error) {
     console.log("Error loading edit project form", error.message)
@@ -96,6 +129,7 @@ exports.createOpp = async (req, res, next) => {
       belongsTo: req.session.currentOrg._id,
     })
 
+    setTabActive("opportunities", res)
     return res.render("app/newOpp", { customers })
   } catch (error) {
     console.log("Error loading create org form", error.message)
@@ -109,6 +143,7 @@ exports.opp = async (req, res, next) => {
     opp.openedDateString = toDateString(opp.openedDate)
     opp.closeDateString = toDateString(opp.closeDate)
 
+    setTabActive("opportunities", res)
     return res.render("app/singleOpp", opp)
   } catch (error) {
     console.log("Error loading specific opportunity", error.message)
@@ -122,12 +157,14 @@ exports.editOpp = async (req, res, next) => {
     opp.openedDateString = toDateString(opp.openedDate)
     opp.closeDateString = toDateString(opp.closeDate)
 
+    setTabActive("opportunities", res)
     return res.render("app/editOpp", opp)
   } catch (error) {
     console.log("Error loading edit opportunity form", error.message)
   }
 }
 exports.newCustomer = async (req, res, next) => {
+  setTabActive("customers", res)
   return res.render("app/newCustomer")
 }
 exports.customer = async (req, res, next) => {
@@ -173,6 +210,7 @@ exports.customer = async (req, res, next) => {
 
     customer.dateAddedString = toDateString(customer.createdAt)
 
+    setTabActive("customers", res)
     return res.render("app/singleCustomer", {
       customer,
       projects,
@@ -195,6 +233,7 @@ exports.editCustomer = async (req, res, next) => {
 
     console.log(customer)
 
+    setTabActive("customers", res)
     return res.render("app/editCustomer", customer)
   } catch (error) {
     console.log("Error loading edit customer form", error.message)
@@ -224,6 +263,8 @@ exports.opportunities = async (req, res, next) => {
 
     potentialRev = toDollarString(potentialRev)
 
+    setTabActive("opportunities", res)
+
     return res.render("app/opportunities", { opps, potentialRev, numberOfOpps })
   } catch (error) {
     console.log("Error loading opportunities", error.message)
@@ -245,6 +286,7 @@ exports.projects = async (req, res, next) => {
       projects[i].goalDateString = projects[i].goalDate.toDateString()
     }
 
+    setTabActive("projects", res)
     return res.render("app/projects", { projects })
   } catch (error) {
     console.log("Error loading projects", error.message)
@@ -262,6 +304,7 @@ exports.customers = async (req, res, next) => {
       )
     }
 
+    setTabActive("customers", res)
     return res.render("app/customers", { customers })
   } catch (error) {
     console.log("Error loading customers", error.message)

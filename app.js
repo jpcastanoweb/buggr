@@ -24,6 +24,9 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
   res.locals.currentOrg = req.session.currentOrg
   res.locals.inApp = req.session.inApp
+  res.locals.opportunitiesActive = req.session.opportunitiesActive
+  res.locals.projectsActive = req.session.projectsActive
+  res.locals.customersActive = req.session.customersActive
   next()
 })
 
