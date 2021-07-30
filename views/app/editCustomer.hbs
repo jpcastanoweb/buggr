@@ -4,16 +4,16 @@
         <div class="app-content px-5 pt-4">
             <h1>Edit Customer</h1>
             <hr />
-            <h4>Editing: {{name}}</h4>
+            <h4>Editing: {{customer.name}}</h4>
             <br />
             <div id="form">
-                <form action="/app/customers/edit/{{_id}}" method="POST">
+                <form action="/app/customers/edit/{{customer._id}}" method="POST">
                     <div class="row mb-2">
                         <div class="col-3">
                             <label for="name">Name *</label>
                         </div>
                         <div class="col">
-                            <input class="w-50" type="text" name="name" placeholder="Customer Name" value="{{name}}" />
+                            <input class="w-50" type="text" name="name" placeholder="Customer Name" value="{{customer.name}}" />
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -21,7 +21,7 @@
                             <label>Contact First Name *</label>
                         </div>
                         <div class="col ">
-                            <input class="w-50" type="text" name="contactFirstName" placeholder="Joe" value="{{contactInfo.firstName}}" />
+                            <input class="w-50" type="text" name="contactFirstName" placeholder="Joe" value="{{customer.contactInfo.firstName}}" />
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -29,7 +29,7 @@
                             <label>Contact Last Number *</label>
                         </div>
                         <div class="col">
-                            <input class="w-50" type="text" name="contactLastName" placeholder="Appleseed" value="{{contactInfo.lastName}}"/>
+                            <input class="w-50" type="text" name="contactLastName" placeholder="Appleseed" value="{{customer.contactInfo.lastName}}"/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -37,7 +37,7 @@
                             <label>Contact Email Address *</label>
                         </div>
                         <div class="col">
-                            <input class="w-50" type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" value="{{contactInfo.emailAddress}}"/>
+                            <input class="w-50" type="email" name="contactEmailAddress" placeholder="joeappleseed@gmail.com" value="{{customer.contactInfo.emailAddress}}"/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -45,7 +45,7 @@
                             <label>Contact Phone Number</label>
                         </div>
                         <div class="col">
-                            <input class="w-50" type="text" name="contactPhoneNumber" placeholder="123-456-7891" value="{{contactInfo.phoneNumber}}"/>
+                            <input class="w-50" type="text" name="contactPhoneNumber" placeholder="123-456-7891" value="{{customer.contactInfo.phoneNumber}}"/>
                         </div>
                     </div>
                     

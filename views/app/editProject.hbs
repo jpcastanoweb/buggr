@@ -4,16 +4,16 @@
         <div class="app-content px-5 pt-4">
             <h1>Edit Project</h1>
             <hr>
-            <h4>Editing: {{title}}</h4>
+            <h4>Editing: {{project.title}}</h4>
             <br />
             <div id="form">
-                <form action="/app/projects/edit/{{_id}}" method="POST">
+                <form action="/app/projects/edit/{{project._id}}" method="POST">
                 <div class="row mb-2">
                     <div class="col-3">
                         <label for="name">Title *</label>
                     </div>
                     <div class="col">
-                        <input class="w-50" type="text" name="title" placeholder="Project Title" value="{{title}}" />
+                        <input class="w-50" type="text" name="title" placeholder="Project Title" value="{{project.title}}" />
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -21,7 +21,7 @@
                         <label for="name">Start Date *</label>
                     </div>
                     <div class="col">
-                        <input class="w-50" type="date" name="startDate" placeholder="" value="{{startDateString}}"/>
+                        <input class="w-50" type="date" name="startDate" placeholder="" value="{{project.startDateString}}"/>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -29,7 +29,7 @@
                         <label for="name">Goal Date *</label>
                     </div>
                     <div class="col">
-                        <input class="w-50" type="date" name="goalDate" placeholder="" value="{{goalDateString}}"/>
+                        <input class="w-50" type="date" name="goalDate" placeholder="" value="{{project.goalDateString}}"/>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -37,7 +37,7 @@
                         <label for="name">Dollar Value *</label>
                     </div>
                     <div class="col">
-                        <input class="w-50" type="text" name="dollarValue" placeholder="0" value="{{dollarValue}}" />
+                        <input class="w-50" type="text" name="dollarValue" placeholder="0" value="{{project.dollarValue}}" />
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col">
                         <select class="w-50" type="text" name="currentStage">
-                            {{#select currentStage}}
+                            {{#select project.currentStage}}
                             <option value="Analysis">Analysis</option>
                             <option value="Design">Design</option>
                             <option value="Implementation">Implementation</option>

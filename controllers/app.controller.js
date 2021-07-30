@@ -119,7 +119,7 @@ exports.editProject = async (req, res, next) => {
     project.startDateString = toDateString(project.startDate)
 
     setTabActive("projects", res)
-    return res.render("app/editProject", project)
+    return res.render("app/editProject", { project })
   } catch (error) {
     console.log("Error loading edit project form", error.message)
   }
@@ -159,7 +159,7 @@ exports.editOpp = async (req, res, next) => {
     opp.closeDateString = toDateString(opp.closeDate)
 
     setTabActive("opportunities", res)
-    return res.render("app/editOpp", opp)
+    return res.render("app/editOpp", { opp })
   } catch (error) {
     console.log("Error loading edit opportunity form", error.message)
   }
@@ -235,7 +235,7 @@ exports.editCustomer = async (req, res, next) => {
     console.log(customer)
 
     setTabActive("customers", res)
-    return res.render("app/editCustomer", customer)
+    return res.render("app/editCustomer", { customer })
   } catch (error) {
     console.log("Error loading edit customer form", error.message)
   }
@@ -404,8 +404,15 @@ exports.submitCreateProject = async (req, res, next) => {
 
   const customerIdObj = mongoose.Types.ObjectId(customerId)
 
-  if (!title || !customerId) {
-    return res.redirect("/app/createproject")
+  if (!title || !customerId || !startDate || !goalDate || !dollarValue) {
+    const customers = await Customer.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    return res.render("app/newProject", {
+      customers,
+      msg: "All fields are required.",
+    })
   }
 
   if (dollarvalue === undefined) {
@@ -458,6 +465,23 @@ exports.submitCreateProject = async (req, res, next) => {
 exports.submitEditProject = async (req, res, next) => {
   const { title, startDate, goalDate, dollarValue, currentStage } = req.body
   const { projectId } = req.params
+
+  if (!title || !startDate || !goalDate || !dollarValue || !currentStage) {
+    const customers = await Customer.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    const project = await Project.findById(projectId)
+    project.goalDateString = toDateString(project.goalDate)
+    project.startDateString = toDateString(project.startDate)
+
+    return res.render("app/editProject", {
+      customers,
+      msg: "All fields are required.",
+      project,
+    })
+  }
+
   const dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
 
   try {
@@ -505,13 +529,24 @@ exports.submitCreateOpp = async (req, res, next) => {
   //create new project
   const { title, customerId, openedDate, closeDate, dollarValue } = req.body
 
-  const customerIdObj = mongoose.Types.ObjectId(customerId)
+  if (!title || !customerId || !openedDate || !closeDate || !dollarValue) {
+    const customers = await Customer.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    return res.render("app/newOpp", {
+      customers,
+      msg: "All fields are required.",
+    })
+  }
 
   if (dollarValue === undefined) {
     dollarValue = 0
   } else {
     dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
   }
+
+  const customerIdObj = mongoose.Types.ObjectId(customerId)
 
   try {
     //create new opp
@@ -554,6 +589,23 @@ exports.submitCreateOpp = async (req, res, next) => {
 exports.submitEditOpp = async (req, res, next) => {
   const { title, openedDate, closeDate, dollarValue, currentStage } = req.body
   const { oppId } = req.params
+
+  if (!title || !openedDate || !closeDate || !dollarValue || !currentStage) {
+    const customers = await Customer.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    const opp = await Opportunity.findById(oppId)
+    opp.openedDateString = toDateString(opp.openedDate)
+    opp.closeDateString = toDateString(opp.closeDate)
+
+    return res.render("app/editOpp", {
+      customers,
+      opp,
+      msg: "All fields are required.",
+    })
+  }
+
   const dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
 
   try {
@@ -643,6 +695,21 @@ exports.submitEditCustomer = async (req, res, next) => {
   } = req.body
 
   const { customerId } = req.params
+
+  if (
+    !name ||
+    !contactFirstName ||
+    !contactLastName ||
+    !contactEmailAddress ||
+    !contactPhoneNumber
+  ) {
+    const customer = await Customer.findById(customerId)
+
+    return res.render("app/editCustomer", {
+      customer,
+      msg: "All fields are required.",
+    })
+  }
 
   try {
     await Customer.findByIdAndUpdate(customerId, {
