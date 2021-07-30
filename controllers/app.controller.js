@@ -485,17 +485,37 @@ exports.submitEditProject = async (req, res, next) => {
   const dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
 
   try {
-    await Project.findByIdAndUpdate(projectId, {
-      title,
-      startDate,
-      goalDate,
-      dollarValue: dollarValueNumber,
-      currentStage,
-    })
+    await Project.findOneAndUpdate(
+      { _id: projectId },
+      {
+        title,
+        startDate,
+        goalDate,
+        dollarValue: dollarValueNumber,
+        currentStage,
+      },
+      {
+        runValidators: true,
+      }
+    )
 
     res.redirect(`/app/projects/${projectId}`)
   } catch (error) {
     console.log("Error editing project", error.message)
+
+    const customers = await Customer.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    const project = await Project.findById(projectId)
+    project.goalDateString = toDateString(project.goalDate)
+    project.startDateString = toDateString(project.startDate)
+
+    return res.render("app/editProject", {
+      customers,
+      msg: error.message,
+      project,
+    })
   }
 }
 exports.submitDeleteProject = async (req, res, next) => {
@@ -609,17 +629,37 @@ exports.submitEditOpp = async (req, res, next) => {
   const dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
 
   try {
-    await Opportunity.findByIdAndUpdate(oppId, {
-      title,
-      openedDate,
-      closeDate,
-      dollarValue: dollarValueNumber,
-      currentStage,
-    })
+    await Opportunity.findOneAndUpdate(
+      { _id: oppId },
+      {
+        title,
+        openedDate,
+        closeDate,
+        dollarValue: dollarValueNumber,
+        currentStage,
+      },
+      {
+        runValidators: true,
+      }
+    )
 
     res.redirect(`/app/opps/${oppId}`)
   } catch (error) {
     console.log("Error editing opportunity", error.message)
+
+    const customers = await Customer.find({
+      belongsTo: req.session.currentOrg._id,
+    })
+
+    const opp = await Opportunity.findById(oppId)
+    opp.openedDateString = toDateString(opp.openedDate)
+    opp.closeDateString = toDateString(opp.closeDate)
+
+    return res.render("app/editOpp", {
+      customers,
+      opp,
+      msg: error.message,
+    })
   }
 }
 exports.submitDeleteOpp = async (req, res, next) => {
@@ -725,6 +765,12 @@ exports.submitEditCustomer = async (req, res, next) => {
     res.redirect(`/app/customers/${customerId}`)
   } catch (error) {
     console.log("Error editing customer", error.message)
+    const customer = await Customer.findById(customerId)
+
+    return res.render("app/editCustomer", {
+      customer,
+      msg: error.message,
+    })
   }
 }
 exports.submitDeleteCustomer = async (req, res, next) => {
