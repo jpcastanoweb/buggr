@@ -831,6 +831,17 @@ exports.convertOppToProject = async (req, res, next) => {
     const startDate = new Date()
     const goalDate = new Date()
     const dollarValue = Number(opp.dollarValue.replace(/[^0-9.-]+/g, ""))
+
+    const newDocuments = []
+
+    for (let i = 0; i < opp.documents.length; i++) {
+      newDocuments.push({
+        name: opp.documents[i].name,
+        fileType: opp.documents[i].fileType,
+        docUrl: opp.documents[i].docUrl,
+      })
+    }
+
     // create new project
     const newProject = await Project.create({
       title: opp.title,
@@ -843,8 +854,8 @@ exports.convertOppToProject = async (req, res, next) => {
       oppCloseDate: opp.closeDate,
       currentStage: "Analysis",
       dollarValue,
-      posts: [],
-      documents: [],
+      posts: opp.posts,
+      documents: newDocuments,
     })
 
     console.log("Created project")
