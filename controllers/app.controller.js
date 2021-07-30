@@ -408,6 +408,12 @@ exports.submitCreateProject = async (req, res, next) => {
     return res.redirect("/app/createproject")
   }
 
+  if (dollarvalue === undefined) {
+    dollarValue = 0
+  } else {
+    dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
+  }
+
   try {
     // create project
     const newProject = await Project.create({
@@ -420,7 +426,7 @@ exports.submitCreateProject = async (req, res, next) => {
       oppOpenedDate: null,
       oppCloseDate: null,
       currentStage: "Analysis",
-      dollarValue,
+      dollarValue: dollarValueString,
       posts: [],
       documents: [],
     })
@@ -501,6 +507,12 @@ exports.submitCreateOpp = async (req, res, next) => {
 
   const customerIdObj = mongoose.Types.ObjectId(customerId)
 
+  if (dollarValue === undefined) {
+    dollarValue = 0
+  } else {
+    dollarValueNumber = Number(dollarValue.replace(/[^0-9.-]+/g, ""))
+  }
+
   try {
     //create new opp
     const newOpp = await Opportunity.create({
@@ -510,7 +522,7 @@ exports.submitCreateOpp = async (req, res, next) => {
       openedDate,
       closeDate,
       currentStage: "New",
-      dollarValue,
+      dollarValue: dollarValueNumber,
       posts: [],
       documents: [],
     })
@@ -534,6 +546,9 @@ exports.submitCreateOpp = async (req, res, next) => {
     return res.redirect("/app/opportunities")
   } catch (error) {
     console.log("Error while creating project", error)
+    return res.render("app/newOpp", {
+      msg: error.message,
+    })
   }
 }
 exports.submitEditOpp = async (req, res, next) => {
