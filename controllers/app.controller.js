@@ -316,9 +316,17 @@ exports.customers = async (req, res, next) => {
 exports.submitEditMyProfile = async (req, res, next) => {
   const { username, email, firstName, lastName, role } = req.body
 
+  // const user = User.findById(req.session.currentUser._id)
+
+  if (!username || !email || !firstName || !lastName || !role) {
+    return res.render("app/editMyProfile", {
+      msg: "All fields are required.",
+    })
+  }
+
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.session.currentUser._id,
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.session.currentUser._id },
       {
         username,
         email,
@@ -328,16 +336,16 @@ exports.submitEditMyProfile = async (req, res, next) => {
       },
       {
         new: true,
+        runValidators: true,
       }
     )
 
     req.session.currentUser = updatedUser
     return res.redirect("/app/myprofile")
   } catch (error) {
-    res.redirect("/app/myprofile/edit", {
+    res.render("app/editMyProfile", {
       msg: error.message,
     })
-    console.log(error.message)
   }
 }
 exports.submitCreateOrg = async (req, res, next) => {
@@ -396,6 +404,10 @@ exports.submitCreateProject = async (req, res, next) => {
 
   const customerIdObj = mongoose.Types.ObjectId(customerId)
 
+  if (!title || !customerId) {
+    return res.redirect("/app/createproject")
+  }
+
   try {
     // create project
     const newProject = await Project.create({
@@ -432,6 +444,9 @@ exports.submitCreateProject = async (req, res, next) => {
     return res.redirect("/app/projects")
   } catch (error) {
     console.log("Error while creating project", error)
+    res.render("app/newProject", {
+      msg: error.message,
+    })
   }
 }
 exports.submitEditProject = async (req, res, next) => {

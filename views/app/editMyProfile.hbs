@@ -47,16 +47,14 @@
               </div>
               <br />
               <button type="submit" class="convert-btn">Update Profile</button>
-          
+              <br />
+              <br />
               {{#if msg}}
-                <p class="error">{{msg}}</p>
+                <div class="alert alert-danger" role="alert">
+                    {{msg}}
+                </div>
               {{/if}}
             </form>
-            <br>
-            {{#if msg}}
-                <p class="error">{{msg}}</p>
-            {{/if}}
-          </div>
         </div>
     </div>
 </div>

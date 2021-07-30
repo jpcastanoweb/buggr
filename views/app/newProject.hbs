@@ -47,7 +47,7 @@
                         <label for="name">Dollar Value *</label>
                     </div>
                     <div class="col">
-                        <input class="w-50" type="date" name="goalDate" placeholder="" />
+                        <input class="w-50" type="text" name="dollarValue" placeholder="" />
                     </div>
                 </div>
                 <br />
@@ -55,8 +55,10 @@
           </form>
           <br>
           {{#if msg}}
-              <p class="error">{{msg}}</p>
-          {{/if}}
+                <div class="alert alert-danger" role="alert">
+                    {{msg}}
+                </div>
+              {{/if}}
           </div>
         </div>
     </div>
