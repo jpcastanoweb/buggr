@@ -17,7 +17,7 @@ const app = express()
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config/index")(app)
-require("./config/session.config")(app)
+require(process.env.CONFIG_FILE)(app)
 
 // Allow session access from everywhere
 app.use((req, res, next) => {
