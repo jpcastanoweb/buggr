@@ -10,7 +10,13 @@ router.get("/", isLoggedIn, inApp, appController.customers)
 /* Profile */
 router.get("/myprofile", isLoggedIn, inApp, appController.myprofile)
 router.get("/myprofile/edit", isLoggedIn, inApp, appController.editMyProfile)
-router.post("/myprofile/edit", isLoggedIn, appController.submitEditMyProfile)
+router.post(
+  "/myprofile/edit",
+  fileUploader.single("profilePicture"),
+  isLoggedIn,
+  inApp,
+  appController.submitEditMyProfile
+)
 
 /* Organization */
 router.get("/createorg", isLoggedIn, inApp, appController.createOrg)

@@ -20,7 +20,14 @@
     <div>
         <p class="text-white-50 ts-4">{{currentOrg.name}}</p>
         <hr>
-        <div class="dropdown">
+        <div class="d-flex justify-content-start dropdown">
+            <div class="img-wrapper-sm me-2">
+                {{#if currentUser.pictureURL}}
+                <img src="{{currentUser.pictureURL}}" class="image--cover-sm">
+                {{else}}
+                <img src="/images/defaultPicture2.png" class="image--cover-sm">
+                {{/if}}
+            </div>
             <a href="" class="d-flex align-items-center link-dark text-decoration-none text-white dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {{currentUser.firstName}} {{currentUser.lastName}}
             </a>

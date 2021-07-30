@@ -32,6 +32,7 @@ const userSchema = new Schema(
       trim: true,
       match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
     },
+    pictureURL: String,
     firstName: {
       type: String,
       required: [true, "First Name is required."],

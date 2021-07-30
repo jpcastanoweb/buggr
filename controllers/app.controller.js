@@ -325,6 +325,12 @@ exports.submitEditMyProfile = async (req, res, next) => {
   }
 
   try {
+    let pictureURL = req.session.currentUser.pictureURL
+
+    if (req.file) {
+      pictureURL = req.file.path
+    }
+
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.session.currentUser._id },
       {
@@ -333,6 +339,7 @@ exports.submitEditMyProfile = async (req, res, next) => {
         firstName,
         lastName,
         role,
+        pictureURL,
       },
       {
         new: true,
@@ -918,8 +925,6 @@ exports.submitUploadFileCustomer = async (req, res, next) => {
   if (!fileName | !req.file) {
     return res.redirect(`/app/customers/${customerId}`)
   }
-
-  console.log(req.file.mimetype)
 
   try {
     const customer = await Customer.findByIdAndUpdate(

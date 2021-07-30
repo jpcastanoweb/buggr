@@ -2,8 +2,19 @@
     {{>appheader}}
     <div class="w-100 ps-0">
         <div class="app-content px-5 pt-4">
-            <h1>My Profile</h1>
-            <span class="me-3"><a class="fs-6" href="/app/myprofile/edit">Edit Profile</a></span>
+            <div class="d-flex justify-content-start align-items-center">
+                <div class="img-wrapper me-3">
+                    {{#if currentUser.pictureURL}}
+                    <img src="{{currentUser.pictureURL}}" class="image--cover">
+                    {{else}}
+                    <img src="/images/defaultPicture2.png" class="image--cover">
+                    {{/if}}
+                </div>
+                <div>
+                    <h1>My Profile</h1>
+                    <span class="me-3"><a class="fs-6" href="/app/myprofile/edit">Edit Profile</a></span>
+                </div>
+            </div>
             <hr>
             {{#with currentUser}}
             <div class="row">

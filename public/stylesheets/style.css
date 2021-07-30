@@ -203,4 +203,29 @@ h1 {
   }
 }
 
-/* wizard with arrows */
+/* Profile pictures */
+.img-wrapper {
+  padding: 0px;
+}
+
+.img-wrapper-sm{
+  padding: 5px;
+}
+
+.image--cover {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.image--cover-sm {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  object-fit: cover;
+  object-position: center;
+}

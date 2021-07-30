@@ -4,7 +4,7 @@
         <div class="app-content px-5 pt-4">
           <h1>Edit Profile </h1>
           <div id="form">
-            <form action="/app/myprofile/edit" method="POST">
+            <form action="/app/myprofile/edit" method="POST" enctype="multipart/form-data">
               <div class="row mb-2">
                   <div class="col-3">
                       <label for="name">Username *</label>
@@ -43,6 +43,14 @@
                   </div>
                   <div class="col">
                       <input class="w-50" type="text" name="role" placeholder="Role" value="{{currentUser.role}}"/>
+                  </div>
+              </div>
+              <div class="row mb-2">
+                  <div class="col-3">
+                      <label for="name">Profile Picture</label>
+                  </div>
+                  <div class="col">
+                      <input class="w-50" type="file" name="profilePicture"/>
                   </div>
               </div>
               <br />
